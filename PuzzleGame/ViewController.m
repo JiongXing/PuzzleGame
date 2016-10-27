@@ -92,17 +92,19 @@
 }
 
 - (IBAction)onAutoButton:(UIButton *)sender {
-    Algorithm *algo = [[Algorithm alloc] init];
-    algo.sourceStatus = self.currentStatus;
-    algo.targetStatus = self.targetStatus;
-    NSMutableArray<GameStauts *> *path = [algo breadthFirstSearch];
-    if (path.count > 0) {
-        [path removeObjectAtIndex:0];
+//    Algorithm *algo = [[Algorithm alloc] init];
+//    algo.sourceStatus = self.currentStatus;
+//    algo.targetStatus = self.targetStatus;
+//    NSMutableArray<GameStauts *> *path = [algo breadthFirstSearch];
+    NSMutableArray<GameStauts *> *path = [Algorithm breadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+    if (!path || path.count == 0) {
+        return;
     }
-    NSLog(@"结果路径总步数：%@", @(path.count));
+    [path removeObjectAtIndex:0];
+    NSLog(@"总共需要移动%@步", @(path.count));
     
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.3 repeats:YES block:^(NSTimer * _Nonnull timer) {
         dispatch_semaphore_signal(sema);
     }];
     
@@ -110,7 +112,7 @@
         [path enumerateObjectsUsingBlock:^(GameStauts * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
             
-            NSLog(@"%@", [obj toString]);
+            NSLog(@"%@", [obj idKey]);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self renderWithGameStatus:obj];
             });

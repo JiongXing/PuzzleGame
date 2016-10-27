@@ -11,15 +11,10 @@
 
 @interface Algorithm : NSObject
 
-/// 起始状态
-@property (nonatomic, strong) GameStauts *sourceStatus;
-/// 目标状态
-@property (nonatomic, strong) GameStauts *targetStatus;
-
-/// BFS广度优先搜索
-- (NSMutableArray<GameStauts *> *)breadthFirstSearch;
-
 /// A*搜索
 - (NSMutableArray<GameStauts *> *)aStarSearch;
+
+/// BFS广度优先搜索。返回搜索路径path，path为nil则无解
++ (NSMutableArray<GameStauts *> *)breadthFirstSearchWithStartStatus:(GameStauts *)startStatus targetStatus:(GameStauts *)targetStatus;
 
 @end

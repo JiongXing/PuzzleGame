@@ -114,18 +114,34 @@
     NSLog(@"%@", str);
 }
 
-- (NSString *)toString {
+- (NSString *)idKey {
     return [self.order componentsJoinedByString:@","];
 }
 
 - (BOOL)isEqualTo:(GameStauts *)status {
-    return [[self toString] isEqualToString:[status toString]];
+    return [[self idKey] isEqualToString:[status idKey]];
 }
 
 - (instancetype)neighborStatusWithDirection:(MoveDirection)direction {
     GameStauts *status = [self mutableCopy];
     [status moveWithDirection:direction];
+    status.parent = self;
     return status;
+}
+
+- (NSMutableArray<GameStauts *> *)effectiveNeighborStatus {
+    NSMutableArray *array = [NSMutableArray array];
+    for (MoveDirection direction = 1; direction <= 4; direction ++) {
+        // 取可移动的方向
+        if ([self canMoveWithDirection:direction]) {
+            GameStauts *status = [self neighborStatusWithDirection:direction];
+            // 取非父结点，添加
+            if (![status isEqualTo:self.parent]) {
+                [array addObject:status];
+            }
+        }
+    }
+    return array;
 }
 
 - (id)mutableCopy {

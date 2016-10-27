@@ -51,12 +51,15 @@ typedef NS_ENUM(NSUInteger, MoveDirection) {
 - (NSInteger)colOfEmpty;
 
 /// 用字符串表示本状态。一种状态唯一生成一个字符串。
-- (NSString *)toString;
+- (NSString *)idKey;
 
 /// 判断两个实例是否等价
 - (BOOL)isEqualTo:(GameStauts *)status;
 
 /// 生成邻居节点，从本状态扩展出新的状态。本方法不检查扩展的状态是否有效
 - (instancetype)neighborStatusWithDirection:(MoveDirection)direction;
+
+/// 生成有效的邻居节点集
+- (NSMutableArray<GameStauts *> *)effectiveNeighborStatus;
 
 @end
