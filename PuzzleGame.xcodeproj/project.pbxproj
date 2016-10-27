@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		940A6DE11DBDB751001C0747 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A6DE01DBDB751001C0747 /* main.m */; };
+		940A6DE41DBDB751001C0747 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A6DE31DBDB751001C0747 /* AppDelegate.m */; };
+		940A6DE71DBDB751001C0747 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A6DE61DBDB751001C0747 /* ViewController.m */; };
+		940A6DEA1DBDB751001C0747 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 940A6DE81DBDB751001C0747 /* Main.storyboard */; };
+		940A6DEC1DBDB751001C0747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 940A6DEB1DBDB751001C0747 /* Assets.xcassets */; };
+		940A6DEF1DBDB751001C0747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 940A6DED1DBDB751001C0747 /* LaunchScreen.storyboard */; };
+		940A6DFA1DBE10AE001C0747 /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A6DF91DBE10AE001C0747 /* Algorithm.m */; };
+		944C889B1DBF0B670090C55F /* GameStauts.m in Sources */ = {isa = PBXBuildFile; fileRef = 944C889A1DBF0B670090C55F /* GameStauts.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		940A6DDC1DBDB751001C0747 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		940A6DE01DBDB751001C0747 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		940A6DE21DBDB751001C0747 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		940A6DE31DBDB751001C0747 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		940A6DE51DBDB751001C0747 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		940A6DE61DBDB751001C0747 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		940A6DE91DBDB751001C0747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		940A6DEB1DBDB751001C0747 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		940A6DEE1DBDB751001C0747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		940A6DF01DBDB751001C0747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		940A6DF81DBE10AE001C0747 /* Algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Algorithm.h; sourceTree = "<group>"; };
+		940A6DF91DBE10AE001C0747 /* Algorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Algorithm.m; sourceTree = "<group>"; };
+		944C88991DBF0B670090C55F /* GameStauts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStauts.h; sourceTree = "<group>"; };
+		944C889A1DBF0B670090C55F /* GameStauts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStauts.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		940A6DD91DBDB751001C0747 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		940A6DD31DBDB751001C0747 = {
+			isa = PBXGroup;
+			children = (
+				940A6DDE1DBDB751001C0747 /* PuzzleGame */,
+				940A6DDD1DBDB751001C0747 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		940A6DDD1DBDB751001C0747 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				940A6DDC1DBDB751001C0747 /* PuzzleGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		940A6DDE1DBDB751001C0747 /* PuzzleGame */ = {
+			isa = PBXGroup;
+			children = (
+				940A6DE21DBDB751001C0747 /* AppDelegate.h */,
+				940A6DE31DBDB751001C0747 /* AppDelegate.m */,
+				940A6DE51DBDB751001C0747 /* ViewController.h */,
+				940A6DE61DBDB751001C0747 /* ViewController.m */,
+				944C88991DBF0B670090C55F /* GameStauts.h */,
+				944C889A1DBF0B670090C55F /* GameStauts.m */,
+				940A6DF81DBE10AE001C0747 /* Algorithm.h */,
+				940A6DF91DBE10AE001C0747 /* Algorithm.m */,
+				940A6DE81DBDB751001C0747 /* Main.storyboard */,
+				940A6DEB1DBDB751001C0747 /* Assets.xcassets */,
+				940A6DED1DBDB751001C0747 /* LaunchScreen.storyboard */,
+				940A6DF01DBDB751001C0747 /* Info.plist */,
+				940A6DDF1DBDB751001C0747 /* Supporting Files */,
+			);
+			path = PuzzleGame;
+			sourceTree = "<group>";
+		};
+		940A6DDF1DBDB751001C0747 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				940A6DE01DBDB751001C0747 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		940A6DDB1DBDB751001C0747 /* PuzzleGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 940A6DF31DBDB751001C0747 /* Build configuration list for PBXNativeTarget "PuzzleGame" */;
+			buildPhases = (
+				940A6DD81DBDB751001C0747 /* Sources */,
+				940A6DD91DBDB751001C0747 /* Frameworks */,
+				940A6DDA1DBDB751001C0747 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PuzzleGame;
+			productName = PuzzleGame;
+			productReference = 940A6DDC1DBDB751001C0747 /* PuzzleGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		940A6DD41DBDB751001C0747 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = JiongXing;
+				TargetAttributes = {
+					940A6DDB1DBDB751001C0747 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 940A6DD71DBDB751001C0747 /* Build configuration list for PBXProject "PuzzleGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 940A6DD31DBDB751001C0747;
+			productRefGroup = 940A6DDD1DBDB751001C0747 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				940A6DDB1DBDB751001C0747 /* PuzzleGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		940A6DDA1DBDB751001C0747 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				940A6DEF1DBDB751001C0747 /* LaunchScreen.storyboard in Resources */,
+				940A6DEC1DBDB751001C0747 /* Assets.xcassets in Resources */,
+				940A6DEA1DBDB751001C0747 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		940A6DD81DBDB751001C0747 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				940A6DE71DBDB751001C0747 /* ViewController.m in Sources */,
+				940A6DFA1DBE10AE001C0747 /* Algorithm.m in Sources */,
+				944C889B1DBF0B670090C55F /* GameStauts.m in Sources */,
+				940A6DE41DBDB751001C0747 /* AppDelegate.m in Sources */,
+				940A6DE11DBDB751001C0747 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		940A6DE81DBDB751001C0747 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				940A6DE91DBDB751001C0747 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		940A6DED1DBDB751001C0747 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				940A6DEE1DBDB751001C0747 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		940A6DF11DBDB751001C0747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		940A6DF21DBDB751001C0747 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		940A6DF41DBDB751001C0747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = JiongXing.PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		940A6DF51DBDB751001C0747 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = JiongXing.PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		940A6DD71DBDB751001C0747 /* Build configuration list for PBXProject "PuzzleGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				940A6DF11DBDB751001C0747 /* Debug */,
+				940A6DF21DBDB751001C0747 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		940A6DF31DBDB751001C0747 /* Build configuration list for PBXNativeTarget "PuzzleGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				940A6DF41DBDB751001C0747 /* Debug */,
+				940A6DF51DBDB751001C0747 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 940A6DD41DBDB751001C0747 /* Project object */;
+}

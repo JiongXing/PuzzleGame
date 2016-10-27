@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WCQ-Uf-oYg">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMW-lF-zAV">
+                                <color key="backgroundColor" red="1" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GMW-lF-zAV" secondAttribute="height" id="yIl-0U-1Q7"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZn-FE-bd7">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="5c1-I4-78r"/>
+                                    <constraint firstAttribute="height" constant="30" id="vBo-bf-FbX"/>
+                                </constraints>
+                                <state key="normal" title="选图"/>
+                                <connections>
+                                    <action selector="onSelectButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c6K-Sb-7Bc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoh-ez-Vts">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="1h0-OB-Lc7"/>
+                                    <constraint firstAttribute="height" constant="30" id="F2k-Wa-NLk"/>
+                                </constraints>
+                                <state key="normal" title="乱序"/>
+                                <connections>
+                                    <action selector="onShuffleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EzY-On-3bT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnA-Oe-ReN">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="cKS-Vf-jAW"/>
+                                    <constraint firstAttribute="height" constant="30" id="cl5-OD-zfG"/>
+                                </constraints>
+                                <state key="normal" title="自动"/>
+                                <connections>
+                                    <action selector="onAutoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BLn-Fd-W9C"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="KZn-FE-bd7" secondAttribute="leading" id="1oB-VH-rx3"/>
+                            <constraint firstItem="KZn-FE-bd7" firstAttribute="top" secondItem="GMW-lF-zAV" secondAttribute="bottom" constant="8" id="ACD-bG-Eua"/>
+                            <constraint firstItem="cnA-Oe-ReN" firstAttribute="top" secondItem="GMW-lF-zAV" secondAttribute="bottom" constant="8" id="B1h-0O-Nrr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="GMW-lF-zAV" secondAttribute="leading" id="STC-S9-YL1"/>
+                            <constraint firstItem="GMW-lF-zAV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="VCv-P3-3EC"/>
+                            <constraint firstItem="zoh-ez-Vts" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VTe-FF-XXC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cnA-Oe-ReN" secondAttribute="trailing" id="aKf-Xl-Ppb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GMW-lF-zAV" secondAttribute="trailing" id="bKY-Ms-jUK"/>
+                            <constraint firstItem="zoh-ez-Vts" firstAttribute="top" secondItem="GMW-lF-zAV" secondAttribute="bottom" constant="8" id="mhv-Hy-X2L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="EUu-km-VYw"/>
+                    <connections>
+                        <outlet property="bgView" destination="GMW-lF-zAV" id="CbC-xv-UlK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052" y="98.50074962518741"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8KN-BB-02i">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WCQ-Uf-oYg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pdS-HO-iKL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7vV-B6-VGR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-Dd-WKQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="119" y="100"/>
+        </scene>
+    </scenes>
+</document>
