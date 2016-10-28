@@ -88,15 +88,24 @@
     }
     
     [self.currentStatus shuffle];
-    [self renderWithGameStatus:self.currentStatus];
+    [self refreshGameStatus];
 }
 
 - (IBAction)onAutoButton:(UIButton *)sender {
-//    Algorithm *algo = [[Algorithm alloc] init];
-//    algo.sourceStatus = self.currentStatus;
-//    algo.targetStatus = self.targetStatus;
-//    NSMutableArray<GameStauts *> *path = [algo breadthFirstSearch];
-    NSMutableArray<GameStauts *> *path = [Algorithm breadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+    if (self.viewArray.count == 0) {
+        [self showMessage:@"请选一张图"];
+        return;
+    }
+    if (self.currentStatus.emptyIndex < 0) {
+        [self showMessage:@"请挖空一格"];
+        return;
+    }
+    
+    // 算法
+//    NSMutableArray<GameStauts *> *path = [Algorithm breadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+    NSMutableArray<GameStauts *> *path = [Algorithm doubleBreadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+    NSLog(@"current:%@", [self.currentStatus idKey]);
+    NSLog(@"target :%@", [self.targetStatus idKey]);
     if (!path || path.count == 0) {
         return;
     }
@@ -111,10 +120,9 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [path enumerateObjectsUsingBlock:^(GameStauts * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-            
-            NSLog(@"%@", [obj idKey]);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self renderWithGameStatus:obj];
+                self.currentStatus = obj;
+                [self refreshGameStatus];
             });
         }];
         [timer invalidate];
@@ -158,7 +166,7 @@
     // 移动
     if ([self.currentStatus canMoveWithDirection:direction]) {
         [self.currentStatus moveWithDirection:direction];
-        [self renderWithGameStatus:self.currentStatus];
+        [self refreshGameStatus];
     }
     // 游戏完成判断
     if ([self.currentStatus isEqualTo:self.targetStatus]) {
@@ -168,7 +176,9 @@
     }
 }
 
-- (void)renderWithGameStatus:(GameStauts *)status {
+- (void)refreshGameStatus {
+    GameStauts *status = self.currentStatus;
+    NSLog(@"current:%@  target:%@", [self.currentStatus idKey], [self.targetStatus idKey]);
     void (^changeFrame)(UIView *, NSUInteger) = ^(UIView *view, NSUInteger index) {
         NSInteger row = index / status.dimension;
         NSInteger col = index % status.dimension;

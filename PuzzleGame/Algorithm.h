@@ -11,10 +11,13 @@
 
 @interface Algorithm : NSObject
 
-/// A*搜索
-- (NSMutableArray<GameStauts *> *)aStarSearch;
-
 /// BFS广度优先搜索。返回搜索路径path，path为nil则无解
 + (NSMutableArray<GameStauts *> *)breadthFirstSearchWithStartStatus:(GameStauts *)startStatus targetStatus:(GameStauts *)targetStatus;
+
+/// DBFS双向广搜
++ (NSMutableArray<GameStauts *> *)doubleBreadthFirstSearchWithStartStatus:(GameStauts *)startStatus targetStatus:(GameStauts *)targetStatus;
+
+/// A*启发式搜索
+- (NSMutableArray<GameStauts *> *)aStarSearch;
 
 @end
