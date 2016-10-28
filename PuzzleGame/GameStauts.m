@@ -51,16 +51,15 @@
 }
 
 - (BOOL)canMoveWithDirection:(MoveDirection)direction {
-//    NSLog(@"期望移动方向：%@", @(direction));
     switch (direction) {
         case MoveDirectionUp:
-            return self.rowOfEmpty != 0;
+            return [self rowOfIndex:self.emptyIndex] != 0;
         case MoveDirectionLeft:
-            return self.colOfEmpty != 0;
+            return [self colOfIndex:self.emptyIndex] != 0;
         case MoveDirectionDown:
-            return self.rowOfEmpty != (self.dimension - 1);
+            return [self rowOfIndex:self.emptyIndex] != (self.dimension - 1);
         case MoveDirectionRight:
-            return self.colOfEmpty != (self.dimension - 1);
+            return [self colOfIndex:self.emptyIndex] != (self.dimension - 1);
         case MoveDirectionNone:
         default:
             return NO;
@@ -91,12 +90,12 @@
 //    [self printSelf:@"移动完成"];
 }
 
-- (NSInteger)rowOfEmpty {
-    return self.emptyIndex / self.dimension;
+- (NSInteger)rowOfIndex:(NSInteger)index {
+    return index / self.dimension;
 }
 
-- (NSInteger)colOfEmpty {
-    return self.emptyIndex % self.dimension;
+- (NSInteger)colOfIndex:(NSInteger)index {
+    return index % self.dimension;
 }
 
 - (NSMutableArray<NSNumber *> *)order {
@@ -142,6 +141,22 @@
         }
     }
     return array;
+}
+
+- (NSInteger)estimateToTarget:(GameStauts *)targetStatus {
+    // 估算从本状态到给定目标状态的代价
+    __block NSInteger manhattanDistance = 0;
+    __weak typeof(self) weakSelf = self;
+    [self.order enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // 忽略空格
+        if ([obj isEqualToNumber:@-1]) {
+            return;
+        }
+        NSInteger rowDistance = ABS([weakSelf rowOfIndex:idx] - [targetStatus rowOfIndex:idx]);
+        NSInteger colDistance = ABS([weakSelf colOfIndex:idx] - [targetStatus colOfIndex:idx]);
+        manhattanDistance += (rowDistance + colDistance);
+    }];
+    return manhattanDistance;
 }
 
 - (id)mutableCopy {

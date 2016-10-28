@@ -13,6 +13,9 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *aiButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet UIButton *autoButton;
 
 /// 矩阵元素数组
 @property (nonatomic, strong) NSMutableArray<UIView *> *viewArray;
@@ -23,6 +26,11 @@
 /// 目标状态
 @property (nonatomic, strong) GameStauts *targetStatus;
 
+/// 当前算法。0：广搜； 1：双向广搜； 2：A*搜索
+@property (nonatomic, assign) NSInteger algorithm;
+/// 保存的状态
+@property (nonatomic, strong) GameStauts *savedStatus;
+
 @end
 
 @implementation ViewController
@@ -30,13 +38,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Puzzle Game";
     
+    self.algorithm = 1;
     self.viewArray = [NSMutableArray array];
     self.currentStatus = [GameStauts statusWithDimension:3 emptyIndex:-1];
     self.targetStatus = [GameStauts statusWithDimension:3 emptyIndex:-1];
 }
 
+/// 难度选择
+- (IBAction)onLevelButton:(UIButton *)sender {
+    
+}
+
+/// 选图
 - (IBAction)onSelectButton:(UIButton *)sender {
     UIImage *image = [UIImage imageNamed:@"luffy"];
     
@@ -77,6 +91,7 @@
     }
 }
 
+/// 打乱
 - (IBAction)onShuffleButton:(UIButton *)sender {
     if (self.viewArray.count == 0) {
         [self showMessage:@"请选一张图"];
@@ -91,6 +106,15 @@
     [self refreshGameStatus];
 }
 
+/// 算法切换
+- (IBAction)onAIButton:(UIButton *)sender {
+}
+
+/// 下一步
+- (IBAction)onNextButton:(UIButton *)sender {
+}
+
+/// 自动
 - (IBAction)onAutoButton:(UIButton *)sender {
     if (self.viewArray.count == 0) {
         [self showMessage:@"请选一张图"];
@@ -104,6 +128,7 @@
     // 算法
 //    NSMutableArray<GameStauts *> *path = [Algorithm breadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
     NSMutableArray<GameStauts *> *path = [Algorithm doubleBreadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+//    NSMutableArray<GameStauts *> *path = [Algorithm aStarSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
     NSLog(@"current:%@", [self.currentStatus idKey]);
     NSLog(@"target :%@", [self.targetStatus idKey]);
     if (!path || path.count == 0) {
@@ -129,6 +154,21 @@
     });
 }
 
+/// 保存存进度
+- (IBAction)onSaveButton:(UIButton *)sender {
+    self.savedStatus = self.currentStatus;
+}
+
+/// 读取进度
+- (IBAction)onReadButton {
+    if (!self.savedStatus) {
+        return;
+    }
+    self.currentStatus = self.savedStatus;
+    self.savedStatus = nil;
+}
+
+/// 点中方块
 - (void)onButton:(UIButton *)button {
     if (!self.emptyView) {
         // 挖空此格
@@ -147,8 +187,8 @@
     
     // 求方向
     MoveDirection direction = MoveDirectionNone;
-    NSInteger fromRow = self.currentStatus.rowOfEmpty;
-    NSInteger fromCol = self.currentStatus.colOfEmpty;
+    NSInteger fromRow = [self.currentStatus rowOfIndex:self.currentStatus.emptyIndex];
+    NSInteger fromCol = [self.currentStatus colOfIndex:self.currentStatus.emptyIndex];
     NSInteger toRow = button.frame.origin.y / button.frame.size.height;
     NSInteger toCol = button.frame.origin.x / button.frame.size.width;
     if (toRow < fromRow && toCol == fromCol) {
@@ -176,9 +216,10 @@
     }
 }
 
+/// 刷新UI
 - (void)refreshGameStatus {
     GameStauts *status = self.currentStatus;
-    NSLog(@"current:%@  target:%@", [self.currentStatus idKey], [self.targetStatus idKey]);
+//    NSLog(@"current:%@", [self.currentStatus idKey]);
     void (^changeFrame)(UIView *, NSUInteger) = ^(UIView *view, NSUInteger index) {
         NSInteger row = index / status.dimension;
         NSInteger col = index % status.dimension;
@@ -206,6 +247,7 @@
     }];
 }
 
+/// 用户提示
 - (void)showMessage:(NSString *)message {
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"嗯" style:UIAlertActionStyleDefault handler:nil];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];

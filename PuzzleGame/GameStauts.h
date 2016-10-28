@@ -29,6 +29,11 @@ typedef NS_ENUM(NSUInteger, MoveDirection) {
 /// 父状态，上一个状态
 @property (nonatomic, strong) GameStauts *parent;
 
+// A*算法专用
+@property (nonatomic, assign) NSInteger aStarF;
+@property (nonatomic, assign) NSInteger aStarG;
+@property (nonatomic, assign) NSInteger aStarH;
+
 /// 创建实例
 + (instancetype)statusWithDimension:(NSInteger)dimension emptyIndex:(NSInteger)emptyIndex;
 
@@ -44,11 +49,11 @@ typedef NS_ENUM(NSUInteger, MoveDirection) {
 /// 空格移动
 - (void)moveWithDirection:(MoveDirection)direction;
 
-/// 取空格所在行。从0开始
-- (NSInteger)rowOfEmpty;
+/// 取存储序列元素所在的矩阵行。从0开始
+- (NSInteger)rowOfIndex:(NSInteger)index;
 
-/// 取空格所在列。从0开始
-- (NSInteger)colOfEmpty;
+/// 取存储序列元素所在的矩阵列。从0开始
+- (NSInteger)colOfIndex:(NSInteger)index;
 
 /// 用字符串表示本状态。一种状态唯一生成一个字符串。
 - (NSString *)idKey;
@@ -61,5 +66,10 @@ typedef NS_ENUM(NSUInteger, MoveDirection) {
 
 /// 生成有效的邻居节点集
 - (NSMutableArray<GameStauts *> *)effectiveNeighborStatus;
+
+/// 估价函数，估算从本状态到给定目标状态的代价
+- (NSInteger)estimateToTarget:(GameStauts *)targetStatus;
+
+
 
 @end

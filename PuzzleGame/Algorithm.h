@@ -18,6 +18,6 @@
 + (NSMutableArray<GameStauts *> *)doubleBreadthFirstSearchWithStartStatus:(GameStauts *)startStatus targetStatus:(GameStauts *)targetStatus;
 
 /// A*启发式搜索
-- (NSMutableArray<GameStauts *> *)aStarSearch;
++ (NSMutableArray<GameStauts *> *)aStarSearchWithStartStatus:(GameStauts *)startStatus targetStatus:(GameStauts *)targetStatus;
 
 @end
