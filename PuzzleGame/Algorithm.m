@@ -160,19 +160,20 @@
                 break;
             }
             status = [waitForReview firstObject];
+            __block NSInteger minStatusIndex = 0;
             [waitForReview enumerateObjectsUsingBlock:^(GameStauts * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (obj.aStarF < status.aStarF) {
                     status = obj;
+                    minStatusIndex = idx;
                 }
             }];
-            [waitForReview removeObjectAtIndex:0];
+            [waitForReview removeObjectAtIndex:minStatusIndex];
             
             // 如果取出来的状态是已检查过的，则此状态无效，丢弃。进行新一轮循环，再取一值
             if (reviewed[[status idKey]]) {
                 status = nil;
             }
         }
-        
         
         // 取不到，无法继续搜索，退出循环
         if (!status) {
@@ -199,14 +200,6 @@
         }];
         // 入队
         [waitForReview addObjectsFromArray:neighbor];
-        
-        // 按估价排序，保证估价小的在队列前方
-//        [waitForReview jx_insertionSortUsingComparator:^NSComparisonResult(GameStauts * obj1, GameStauts * obj2) {
-//            if (obj1.aStarF == obj2.aStarF) {
-//                return NSOrderedSame;
-//            }
-//            return obj1.aStarF < obj2.aStarF ? NSOrderedAscending : NSOrderedDescending;
-//        }];
     }
     NSLog(@"review堆大小：%@", @(reviewed.count));
     return path;

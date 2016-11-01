@@ -218,7 +218,6 @@
         return;
     }
     self.currentStatus = self.savedStatus;
-    self.savedStatus = nil;
     [self refreshGameStatus];
 }
 

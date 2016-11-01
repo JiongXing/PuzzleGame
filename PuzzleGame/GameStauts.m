@@ -148,12 +148,13 @@
     __block NSInteger manhattanDistance = 0;
     __weak typeof(self) weakSelf = self;
     [self.order enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger val = obj.integerValue;
         // 忽略空格
         if ([obj isEqualToNumber:@-1]) {
             return;
         }
-        NSInteger rowDistance = ABS([weakSelf rowOfIndex:idx] - [targetStatus rowOfIndex:idx]);
-        NSInteger colDistance = ABS([weakSelf colOfIndex:idx] - [targetStatus colOfIndex:idx]);
+        NSInteger rowDistance = ABS([weakSelf rowOfIndex:idx] - [targetStatus rowOfIndex:val]);
+        NSInteger colDistance = ABS([weakSelf colOfIndex:idx] - [targetStatus colOfIndex:val]);
         manhattanDistance += (rowDistance + colDistance);
     }];
     return manhattanDistance;
