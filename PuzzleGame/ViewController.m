@@ -26,6 +26,8 @@
 /// 目标状态
 @property (nonatomic, strong) GameStauts *targetStatus;
 
+/// 图片
+@property (nonatomic, strong) UIImage *image;
 /// 当前算法。0：广搜； 1：双向广搜； 2：A*搜索
 @property (nonatomic, assign) NSInteger algorithm;
 /// 保存的状态
@@ -45,14 +47,12 @@
     self.targetStatus = [GameStauts statusWithDimension:3 emptyIndex:-1];
 }
 
-/// 难度选择
-- (IBAction)onLevelButton:(UIButton *)sender {
-    
-}
-
-/// 选图
-- (IBAction)onSelectButton:(UIButton *)sender {
-    UIImage *image = [UIImage imageNamed:@"luffy"];
+/// 重置游戏
+- (void)reset {
+    UIImage *image = self.image;
+    if (!image) {
+        image = [UIImage imageNamed:@"luffy"];
+    }
     
     NSInteger dimension = self.currentStatus.dimension;
     CGFloat viewSize = self.bgView.bounds.size.width / dimension;
@@ -91,6 +91,31 @@
     }
 }
 
+/// 难度选择
+- (IBAction)onLevelButton:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择难度" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"高" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.currentStatus.dimension = 5;
+        [weakSelf reset];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"中" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.currentStatus.dimension = 4;
+        [weakSelf reset];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"低" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.currentStatus.dimension = 3;
+        [weakSelf reset];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+/// 选图
+- (IBAction)onSelectButton:(UIButton *)sender {
+    self.image = [UIImage imageNamed:@"luffy"];;
+    [self reset];
+}
+
 /// 打乱
 - (IBAction)onShuffleButton:(UIButton *)sender {
     if (self.viewArray.count == 0) {
@@ -108,6 +133,21 @@
 
 /// 算法切换
 - (IBAction)onAIButton:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择AI" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"广搜" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.algorithm = 0;
+        [weakSelf.aiButton setTitle:@"AI：广搜" forState:UIControlStateNormal];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"双向广搜" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.algorithm = 1;
+        [weakSelf.aiButton setTitle:@"AI：双向广搜" forState:UIControlStateNormal];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"A*搜索" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.algorithm = 2;
+        [weakSelf.aiButton setTitle:@"AI：A*搜索" forState:UIControlStateNormal];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /// 下一步
@@ -126,9 +166,20 @@
     }
     
     // 算法
-//    NSMutableArray<GameStauts *> *path = [Algorithm breadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
-    NSMutableArray<GameStauts *> *path = [Algorithm doubleBreadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
-//    NSMutableArray<GameStauts *> *path = [Algorithm aStarSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+    NSMutableArray<GameStauts *> *path = nil;
+    switch (self.algorithm) {
+        case 0:
+            path = [Algorithm breadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+            break;
+        case 1:
+            path = [Algorithm doubleBreadthFirstSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+            break;
+        case 2:
+            path = [Algorithm aStarSearchWithStartStatus:self.currentStatus targetStatus:self.targetStatus];
+            break;
+        default:
+            break;
+    }
     NSLog(@"current:%@", [self.currentStatus idKey]);
     NSLog(@"target :%@", [self.targetStatus idKey]);
     if (!path || path.count == 0) {
@@ -154,9 +205,11 @@
     });
 }
 
-/// 保存存进度
+/// 保存进度
 - (IBAction)onSaveButton:(UIButton *)sender {
-    self.savedStatus = self.currentStatus;
+    self.savedStatus = [self.currentStatus mutableCopy];
+    self.savedStatus.emptyIndex = self.currentStatus.emptyIndex;
+    [self showMessage:@"已保存当前状态"];
 }
 
 /// 读取进度
@@ -166,6 +219,7 @@
     }
     self.currentStatus = self.savedStatus;
     self.savedStatus = nil;
+    [self refreshGameStatus];
 }
 
 /// 点中方块

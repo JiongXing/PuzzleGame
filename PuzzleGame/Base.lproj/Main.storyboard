@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMW-lF-zAV">
@@ -107,7 +107,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="zoh-ez-Vts" secondAttribute="trailing" constant="-3" id="xNR-Nc-5Jm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EUu-km-VYw"/>
+                    <navigationItem key="navigationItem" title="Puzzle Game" id="EUu-km-VYw"/>
                     <connections>
                         <outlet property="aiButton" destination="foJ-TW-PQe" id="oBH-ov-EJf"/>
                         <outlet property="autoButton" destination="r8G-ts-58D" id="ibD-BL-oAD"/>
