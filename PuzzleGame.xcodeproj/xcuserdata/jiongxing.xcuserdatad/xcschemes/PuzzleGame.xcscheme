@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "940A6DDB1DBDB751001C0747"
+               BlueprintIdentifier = "945098E41DD5968A0008F3C8"
                BuildableName = "PuzzleGame.app"
                BlueprintName = "PuzzleGame"
                ReferencedContainer = "container:PuzzleGame.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "940A6DDB1DBDB751001C0747"
+            BlueprintIdentifier = "945098E41DD5968A0008F3C8"
             BuildableName = "PuzzleGame.app"
             BlueprintName = "PuzzleGame"
             ReferencedContainer = "container:PuzzleGame.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "940A6DDB1DBDB751001C0747"
+            BlueprintIdentifier = "945098E41DD5968A0008F3C8"
             BuildableName = "PuzzleGame.app"
             BlueprintName = "PuzzleGame"
             ReferencedContainer = "container:PuzzleGame.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "940A6DDB1DBDB751001C0747"
+            BlueprintIdentifier = "945098E41DD5968A0008F3C8"
             BuildableName = "PuzzleGame.app"
             BlueprintName = "PuzzleGame"
             ReferencedContainer = "container:PuzzleGame.xcodeproj">

@@ -1,141 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WCQ-Uf-oYg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zc7-Qb-21Z">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Puzzle Game-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Puzzle Game" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMW-lF-zAV">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rml-Ih-ByM">
+                                <rect key="frame" x="16" y="72" width="288" height="288"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoh-ez-Vts">
-                                <state key="normal" title="打乱"/>
-                                <connections>
-                                    <action selector="onShuffleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iDx-L7-9Zt"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCk-4H-rrf">
-                                <state key="normal" title="保存进度"/>
-                                <connections>
-                                    <action selector="onSaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hmh-A8-G3K"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZn-FE-bd7">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="7Rf-lB-ybQ"/>
-                                </constraints>
-                                <state key="normal" title="选图"/>
-                                <connections>
-                                    <action selector="onSelectButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jmz-zo-hkf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFn-bc-KFD">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="eWX-Mk-KFd"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Sw-6tk">
+                                <rect key="frame" x="16" y="433" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="难度：低"/>
                                 <connections>
-                                    <action selector="onLevelButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aVb-7w-EJd"/>
+                                    <action selector="onHardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3BW-zD-5MD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foJ-TW-PQe">
-                                <state key="normal" title="AI：双向广搜"/>
-                                <connections>
-                                    <action selector="onAIButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qrY-zX-Qfc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnA-Oe-ReN">
-                                <state key="normal" title="下一步"/>
-                                <connections>
-                                    <action selector="onNextButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6nP-FV-XSM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8G-ts-58D">
-                                <state key="normal" title="自动"/>
-                                <connections>
-                                    <action selector="onAutoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zf6-Hw-BGV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVb-mM-pqk">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4p-S1-S8y">
+                                <rect key="frame" x="229" y="471" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="读取进度"/>
                                 <connections>
-                                    <action selector="onReadButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="by7-SA-xhG"/>
+                                    <action selector="onLoadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IWc-cJ-Nfa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9Z-vI-UHU">
+                                <rect key="frame" x="111" y="433" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AI：A*算法"/>
+                                <connections>
+                                    <action selector="onAiButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1D-6g-8eu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duP-oQ-88r">
+                                <rect key="frame" x="16" y="471" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="保存进度"/>
+                                <connections>
+                                    <action selector="onSaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xH4-uK-JZM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w06-2y-Fhd">
+                                <rect key="frame" x="16" y="395" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="选图"/>
+                                <connections>
+                                    <action selector="onSelectPictureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pjb-3m-Mpa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ocs-QH-Fvw">
+                                <rect key="frame" x="130" y="395" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="打乱"/>
+                                <connections>
+                                    <action selector="onShuffleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iPK-9L-2xP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RpX-Cv-l4o">
+                                <rect key="frame" x="229" y="395" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="重置"/>
+                                <connections>
+                                    <action selector="onResetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E57-4c-wUf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQK-jh-NvX">
+                                <rect key="frame" x="229" y="433" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="自动"/>
+                                <connections>
+                                    <action selector="onAutoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kqZ-cx-6PS"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="KZn-FE-bd7" firstAttribute="leading" secondItem="wFn-bc-KFD" secondAttribute="trailing" constant="5" id="08j-nI-b0i"/>
-                            <constraint firstItem="foJ-TW-PQe" firstAttribute="top" secondItem="wFn-bc-KFD" secondAttribute="bottom" constant="8" symbolic="YES" id="1eL-T4-bfz"/>
-                            <constraint firstItem="zoh-ez-Vts" firstAttribute="trailing" secondItem="r8G-ts-58D" secondAttribute="trailing" id="8cM-yY-uza"/>
-                            <constraint firstItem="r8G-ts-58D" firstAttribute="trailing" secondItem="SVb-mM-pqk" secondAttribute="trailing" id="8i9-iD-6ve"/>
-                            <constraint firstItem="wFn-bc-KFD" firstAttribute="baseline" secondItem="KZn-FE-bd7" secondAttribute="baseline" id="AEI-3N-w3W"/>
-                            <constraint firstItem="GMW-lF-zAV" firstAttribute="leading" secondItem="wFn-bc-KFD" secondAttribute="leading" id="Dhj-Ar-pHY"/>
-                            <constraint firstItem="wFn-bc-KFD" firstAttribute="trailing" secondItem="foJ-TW-PQe" secondAttribute="trailing" id="E1S-0D-jsn"/>
-                            <constraint firstItem="wFn-bc-KFD" firstAttribute="top" secondItem="GMW-lF-zAV" secondAttribute="bottom" constant="43" id="FD3-CX-2ee"/>
-                            <constraint firstItem="KZn-FE-bd7" firstAttribute="leading" secondItem="cnA-Oe-ReN" secondAttribute="leading" id="Fty-fK-8fu"/>
-                            <constraint firstItem="r8G-ts-58D" firstAttribute="leading" secondItem="SVb-mM-pqk" secondAttribute="leading" id="KKD-jS-R7U"/>
-                            <constraint firstItem="foJ-TW-PQe" firstAttribute="leading" secondItem="yCk-4H-rrf" secondAttribute="leading" id="LRu-5c-Bjm"/>
-                            <constraint firstItem="cnA-Oe-ReN" firstAttribute="baseline" secondItem="r8G-ts-58D" secondAttribute="baseline" id="Lut-5U-qgS"/>
-                            <constraint firstItem="yCk-4H-rrf" firstAttribute="baseline" secondItem="SVb-mM-pqk" secondAttribute="baseline" id="NAS-BR-32Z"/>
-                            <constraint firstItem="yCk-4H-rrf" firstAttribute="top" secondItem="foJ-TW-PQe" secondAttribute="bottom" constant="8" symbolic="YES" id="PN4-FF-vqI"/>
-                            <constraint firstItem="GMW-lF-zAV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QyI-Rv-UAi"/>
-                            <constraint firstItem="zoh-ez-Vts" firstAttribute="leading" secondItem="r8G-ts-58D" secondAttribute="leading" id="Wdv-wC-WCT"/>
-                            <constraint firstItem="GMW-lF-zAV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="X4l-ld-ily"/>
-                            <constraint firstItem="KZn-FE-bd7" firstAttribute="trailing" secondItem="cnA-Oe-ReN" secondAttribute="trailing" id="c2K-qI-VEt"/>
-                            <constraint firstItem="wFn-bc-KFD" firstAttribute="leading" secondItem="foJ-TW-PQe" secondAttribute="leading" id="eTT-7m-Rva"/>
-                            <constraint firstItem="foJ-TW-PQe" firstAttribute="baseline" secondItem="cnA-Oe-ReN" secondAttribute="baseline" id="iQY-Fe-Bmg"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yCk-4H-rrf" secondAttribute="bottom" constant="59" id="ihi-02-y6x"/>
-                            <constraint firstItem="KZn-FE-bd7" firstAttribute="baseline" secondItem="zoh-ez-Vts" secondAttribute="baseline" id="kqn-hV-ZeL"/>
-                            <constraint firstItem="zoh-ez-Vts" firstAttribute="leading" secondItem="KZn-FE-bd7" secondAttribute="trailing" constant="4" id="nCm-Ja-PFd"/>
-                            <constraint firstItem="GMW-lF-zAV" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="oWQ-ST-TAi"/>
-                            <constraint firstItem="foJ-TW-PQe" firstAttribute="trailing" secondItem="yCk-4H-rrf" secondAttribute="trailing" id="vi3-q6-iO9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zoh-ez-Vts" secondAttribute="trailing" constant="-3" id="xNR-Nc-5Jm"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Puzzle Game" id="EUu-km-VYw"/>
+                    <navigationItem key="navigationItem" title="Puzzle Game" id="eMG-TY-ijr"/>
                     <connections>
-                        <outlet property="aiButton" destination="foJ-TW-PQe" id="oBH-ov-EJf"/>
-                        <outlet property="autoButton" destination="r8G-ts-58D" id="ibD-BL-oAD"/>
-                        <outlet property="bgView" destination="GMW-lF-zAV" id="juP-DM-YIu"/>
-                        <outlet property="nextButton" destination="cnA-Oe-ReN" id="4sg-vh-Iuq"/>
+                        <outlet property="aiButton" destination="R9Z-vI-UHU" id="61e-ve-pnX"/>
+                        <outlet property="autoButton" destination="VQK-jh-NvX" id="o91-jU-IRc"/>
+                        <outlet property="bgView" destination="Rml-Ih-ByM" id="xjF-HP-hYT"/>
+                        <outlet property="hardButton" destination="v77-Sw-6tk" id="rBg-QL-ViA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1051.875" y="98.239436619718305"/>
+            <point key="canvasLocation" x="1266" y="124"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="8KN-BB-02i">
+        <scene sceneID="0ud-ju-Zb9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WCQ-Uf-oYg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zc7-Qb-21Z" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pdS-HO-iKL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CeT-fh-gtr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7vV-B6-VGR"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pdx-Mn-wI2"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-Dd-WKQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GxK-cU-3jg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119" y="100"/>
+            <point key="canvasLocation" x="49" y="124"/>
         </scene>
     </scenes>
 </document>
