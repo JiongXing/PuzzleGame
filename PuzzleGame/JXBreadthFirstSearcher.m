@@ -22,7 +22,9 @@
     NSMutableArray *open = [NSMutableArray array];
     
     [open addObject:self.startStatus];
+    
     while (open.count > 0) {
+        // 出列
         id status = [open firstObject];
         [open removeObjectAtIndex:0];
         

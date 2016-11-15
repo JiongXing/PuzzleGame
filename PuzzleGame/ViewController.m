@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *hardButton;
 @property (weak, nonatomic) IBOutlet UIButton *aiButton;
 @property (weak, nonatomic) IBOutlet UIButton *autoButton;
+@property (strong, nonatomic) UILabel *messageLabel;
 
 #pragma mark - 选项
 /// 图片
@@ -34,6 +35,9 @@
 /// 保存的游戏状态
 @property (nonatomic, strong) PuzzleStatus *savedStatus;
 
+/// 标记正在自动拼图
+@property (atomic, assign) BOOL isAutoGaming;
+
 @end
 
 @implementation ViewController
@@ -47,17 +51,26 @@
 
 /// 选择图片
 - (IBAction)onSelectPictureButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
     self.image = [UIImage imageNamed:@"luffy"];
 }
 
 /// 打乱顺序
 - (IBAction)onShuffleButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
     [self.currentStatus shuffleCount:self.dimension * self.dimension * 5];
     [self reloadWithStatus:self.currentStatus];
 }
 
 /// 重置游戏
 - (IBAction)onResetButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
     if (!self.image) {
         return;
     }
@@ -70,12 +83,16 @@
         [obj addTarget:self action:@selector(onPieceTouch:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
-    self.completedStatus = [self.currentStatus  copyStatus];
+    self.completedStatus = nil;
     [self showCurrentStatusOnView:self.bgView];
 }
 
 /// 难度切换
 - (IBAction)onHardButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
+    
     __weak typeof(self) weakSelf = self;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择难度" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alert addAction:[UIAlertAction actionWithTitle:@"高" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -93,6 +110,10 @@
 
 /// 算法切换
 - (IBAction)onAiButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
+    
     __weak typeof(self) weakSelf = self;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择AI算法" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alert addAction:[UIAlertAction actionWithTitle:@"广搜" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -110,34 +131,47 @@
 
 /// 自动完成
 - (IBAction)onAutoButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
+    
     JXPathSearcher *searcher = nil;
     switch (self.algorithm) {
         case 0:
             searcher = [[JXBreadthFirstSearcher alloc] init];
+            NSLog(@"广度优先搜索！");
             break;
         case 1:
             searcher = [[JXDoubleBreadthFirstSearcher alloc] init];
+            NSLog(@"双向广度优先搜索！");
             break;
         case 2:
-            searcher = [[JXBreadthFirstSearcher alloc] init];
+            searcher = [[JXDoubleBreadthFirstSearcher alloc] init];
+            NSLog(@"A*搜索！");
             break;
         default:
             break;
     }
     
-    searcher.startStatus = self.currentStatus;
-    searcher.targetStatus = self.completedStatus;
+    searcher.startStatus = [self.currentStatus copyStatus];
+    searcher.targetStatus = [self.completedStatus copyStatus];
     [searcher setEqualComparator:^BOOL(PuzzleStatus *status1, PuzzleStatus *status2) {
         return [status1 equalWithStatus:status2];
     }];
     NSMutableArray<PuzzleStatus *> *path = [searcher search];
-    NSLog(@"path count:%ld", path.count);
+    __block NSInteger pathCount = path.count;
+    NSLog(@"path count:%@", @(pathCount));
     
-    if (!path || path.count == 0) {
+    if (!path || pathCount == 0) {
         return;
     }
     
-    // 展示路径
+    // 开始自动拼图
+    self.isAutoGaming = YES;
+    [self.autoButton.superview addSubview:self.messageLabel];
+    self.autoButton.hidden = YES;
+    
+    // 定时信号，控制拼图速度
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.3 repeats:YES block:^(NSTimer * _Nonnull timer) {
         dispatch_semaphore_signal(sema);
@@ -148,23 +182,52 @@
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
             // 刷新UI
             dispatch_async(dispatch_get_main_queue(), ^{
+                // 显示排列
                 [self reloadWithStatus:obj];
-                NSLog(@"%@", [obj statusIdentifier]);
+                // 显示步数
+                if ((-- pathCount) > 0) {
+                    self.messageLabel.text = [NSString stringWithFormat:@"自动(%@)", @(pathCount)];
+                }
+                else {
+                    self.messageLabel.text = @"自动";
+                    [self.messageLabel removeFromSuperview];
+                    self.autoButton.hidden = NO;
+                }
+//                NSLog(@"%@", [obj statusIdentifier]);
             });
         }];
+        
+        // 拼图完成
         [timer invalidate];
         self.currentStatus = [path lastObject];
+        self.isAutoGaming = NO;
     });
 }
 
 /// 保存进度
 - (IBAction)onSaveButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
+    
+    if (!self.currentStatus) {
+        return;
+    }
+    
     self.savedStatus = [self.currentStatus  copyStatus];
     [self alertTitle:nil message:@"保存成功"];
 }
 
 /// 读取进度
 - (IBAction)onLoadButton:(UIButton *)sender {
+    if (self.isAutoGaming) {
+        return;
+    }
+    
+    if (!self.savedStatus) {
+        return;
+    }
+    
     if (self.currentStatus) {
         [self.currentStatus removeAllPieces];
     }
@@ -176,14 +239,22 @@
 
 /// 点击方块
 - (void)onPieceTouch:(PuzzlePiece *)piece {
+    if (self.isAutoGaming) {
+        return;
+    }
+    
     PuzzleStatus *status = self.currentStatus;
     NSInteger pieceIndex = [status.pieceArray indexOfObject:piece];
+    
+    // 挖空一格
     if (status.emptyIndex < 0) {
         // 所选方块成为空格
         [UIView animateWithDuration:0.25 animations:^{
             piece.alpha = 0;
         }];
         status.emptyIndex = pieceIndex;
+        // 设置目标状态
+        self.completedStatus = [self.currentStatus  copyStatus];
         return;
     }
     
@@ -198,9 +269,7 @@
     
     // 完成一次移动
     if ([status equalWithStatus:self.completedStatus]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self alertTitle:@"恭喜" message:@"拼图完成！"];
-        });
+        [self alertTitle:@"恭喜" message:@"拼图完成！"];
     }
 }
 
@@ -265,12 +334,23 @@
         title = @"AI：A*算法";
     }
     [self.aiButton setTitle:title forState:UIControlStateNormal];
-    [self onResetButton:nil];
 }
 
 - (void)setImage:(UIImage *)image {
     _image = image;
     [self onResetButton:nil];
+}
+
+- (UILabel *)messageLabel {
+    if (!_messageLabel) {
+        _messageLabel = [[UILabel alloc] init];
+        _messageLabel.textColor = [self.autoButton titleColorForState:UIControlStateNormal];
+        _messageLabel.text = [self.autoButton titleForState:UIControlStateNormal];
+        _messageLabel.font = self.autoButton.titleLabel.font;
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.frame = self.autoButton.frame;
+    }
+    return _messageLabel;
 }
 
 /// 用户提示

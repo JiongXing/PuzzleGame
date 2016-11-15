@@ -19,6 +19,9 @@
 
 - (NSMutableArray *)constructPathWithStatus:(id<JXPathSearcherStatus>)status isLast:(BOOL)isLast {
     NSMutableArray *path = [NSMutableArray array];
+    if (!status) {
+        return path;
+    }
     
     do {
         if (isLast) {
@@ -36,6 +39,12 @@
     // 保证开始状态是没有父状态的。为了保证在构建路径的时候不会超出开始状态。
     [startStatus setParentStatus:nil];
     _startStatus = startStatus;
+}
+
+- (void)setTargetStatus:(id<JXPathSearcherStatus>)targetStatus {
+    // 保证目标状态是没有父状态的。为了保证在构建路径的时候不会超出目标状态。
+    [targetStatus setParentStatus:nil];
+    _targetStatus = targetStatus;
 }
 
 @end
