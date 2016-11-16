@@ -63,9 +63,11 @@
     if (self.isAutoGaming) {
         return;
     }
-    [self.currentStatus shuffleCount:self.dimension * 10];
+    if (self.currentStatus.emptyIndex < 0) {
+        return;
+    }
+    [self.currentStatus shuffleCount:self.dimension * self.dimension * 10];
     [self reloadWithStatus:self.currentStatus];
-    NSLog(@"当前状态序列：%@", [self.currentStatus statusIdentifier]);
 }
 
 /// 重置游戏
@@ -134,6 +136,9 @@
 /// 自动完成
 - (IBAction)onAutoButton:(UIButton *)sender {
     if (self.isAutoGaming) {
+        return;
+    }
+    if (self.currentStatus.emptyIndex < 0) {
         return;
     }
     

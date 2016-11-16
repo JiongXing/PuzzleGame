@@ -11,8 +11,8 @@
 @interface PuzzlePiece : UIButton
 
 /// 本方块在原图上的位置，从0开始编号
-@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, assign) NSInteger ID;
 
-+ (instancetype)pieceWithID:(NSString *)ID image:(UIImage *)image;
++ (instancetype)pieceWithID:(NSInteger)ID image:(UIImage *)image;
 
 @end

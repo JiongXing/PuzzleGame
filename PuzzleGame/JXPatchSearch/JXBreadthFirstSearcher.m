@@ -44,7 +44,7 @@
         // 否则，扩展出子状态
         [open addObjectsFromArray:[status childStatus]];
     }
-    NSLog(@"总搜索数量: %@", @(close.count));
+    NSLog(@"总共搜索了: %@个状态", @(close.count));
     return path;
 }
 

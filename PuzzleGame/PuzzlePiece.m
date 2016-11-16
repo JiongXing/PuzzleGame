@@ -10,7 +10,7 @@
 
 @implementation PuzzlePiece
 
-+ (instancetype)pieceWithID:(NSString *)ID image:(UIImage *)image {
++ (instancetype)pieceWithID:(NSInteger)ID image:(UIImage *)image {
     PuzzlePiece *piece = [[PuzzlePiece alloc] init];
     piece.ID = ID;
     piece.layer.borderWidth = 1;

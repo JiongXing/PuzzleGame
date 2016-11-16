@@ -38,7 +38,7 @@
             // 切割图片
             CGRect rect = CGRectMake(col * pieceImageWidh, row * pieceImageHeight, pieceImageWidh, pieceImageHeight);
             CGImageRef imgRef = CGImageCreateWithImageInRect(image.CGImage, rect);
-            PuzzlePiece *piece = [PuzzlePiece pieceWithID:[NSString stringWithFormat:@"%@", @(ID ++)] image:[UIImage imageWithCGImage:imgRef]];
+            PuzzlePiece *piece = [PuzzlePiece pieceWithID:ID ++ image:[UIImage imageWithCGImage:imgRef]];
             [status.pieceArray addObject:piece];
         }
     }
@@ -158,7 +158,7 @@
 - (NSString *)statusIdentifier {
     NSMutableString *str = [NSMutableString string];
     [self.pieceArray enumerateObjectsUsingBlock:^(PuzzlePiece * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [str appendFormat:@"%@,", obj.ID];
+        [str appendFormat:@"%ld,", obj.ID];
     }];
     return str;
 }
@@ -230,17 +230,27 @@
 
 /// 估算从当前状态到目标状态的代价
 - (NSInteger)estimateToTargetStatus:(id<JXPathSearcherStatus>)targetStatus {
+    PuzzleStatus *target = (PuzzleStatus *)targetStatus;
+    
     // 计算每一个方块距离它正确位置的距离
     // 曼哈顿距离
-    __block NSInteger manhattanDistance = 0;
-    __weak typeof(self) weakSelf = self;
-    [self.pieceArray enumerateObjectsUsingBlock:^(PuzzlePiece * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSInteger rowDistance = ABS([weakSelf rowOfIndex:[obj.ID integerValue]] - [(PuzzleStatus *)targetStatus rowOfIndex:idx]);
-        NSInteger colDistance = ABS([weakSelf colOfIndex:[obj.ID integerValue]] - [(PuzzleStatus *)targetStatus colOfIndex:idx]);
-        manhattanDistance += (rowDistance + colDistance);
-    }];
-
-    return manhattanDistance * 2;
+    NSInteger manhattanDistance = 0;
+    for (NSInteger index = 0; index < self.pieceArray.count; ++ index) {
+        // 略过空格
+        if (index == self.emptyIndex) {
+            continue;
+        }
+        
+        PuzzlePiece *currentPiece = self.pieceArray[index];
+        PuzzlePiece *targetPiece = target.pieceArray[index];
+        
+        manhattanDistance +=
+        ABS([self rowOfIndex:currentPiece.ID] - [target rowOfIndex:targetPiece.ID]) +
+        ABS([self colOfIndex:currentPiece.ID] - [target colOfIndex:targetPiece.ID]);
+    }
+    
+    // 增大权重
+    return 5 * manhattanDistance;
 }
 
 @end
