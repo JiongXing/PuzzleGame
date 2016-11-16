@@ -12,7 +12,7 @@
 #import "JXDoubleBreadthFirstSearcher.h"
 #import "JXAStarSearcher.h"
 
-@interface ViewController ()
+@interface ViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIButton *hardButton;
@@ -55,7 +55,20 @@
     if (self.isAutoGaming) {
         return;
     }
-    self.image = [UIImage imageNamed:@"luffy"];
+    
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择图片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf selectImageWithSourceType:UIImagePickerControllerSourceTypeCamera];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf selectImageWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"默认图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.image = [UIImage imageNamed:@"luffy"];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /// 打乱顺序
@@ -215,7 +228,6 @@
     if (self.isAutoGaming) {
         return;
     }
-    
     if (!self.currentStatus) {
         return;
     }
@@ -229,7 +241,6 @@
     if (self.isAutoGaming) {
         return;
     }
-    
     if (!self.savedStatus) {
         return;
     }
@@ -248,7 +259,6 @@
     if (self.isAutoGaming) {
         return;
     }
-    
     PuzzleStatus *status = self.currentStatus;
     NSInteger pieceIndex = [status.pieceArray indexOfObject:piece];
     
@@ -281,7 +291,6 @@
 
 - (void)showCurrentStatusOnView:(UIView *)view {
     CGFloat size = CGRectGetWidth(view.bounds) / self.dimension;
-    
     NSInteger index = 0;
     for (NSInteger row = 0; row < self.dimension; ++ row) {
         for (NSInteger col = 0; col < self.dimension; ++ col) {
@@ -337,7 +346,7 @@
         title = @"AI：双向广搜";
     }
     else if (algorithm == 3) {
-        title = @"AI：A*算法";
+        title = @"AI：A*搜索";
     }
     [self.aiButton setTitle:title forState:UIControlStateNormal];
 }
@@ -357,6 +366,27 @@
         _messageLabel.frame = self.autoButton.frame;
     }
     return _messageLabel;
+}
+
+/// 选择图片
+- (void)selectImageWithSourceType:(UIImagePickerControllerSourceType)sourceType {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = sourceType;
+    picker.allowsEditing = YES;
+    [self.navigationController presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    NSLog(@"imagePickerControllerDidCancel");
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    NSLog(@"didFinishPickingMediaWithInfo");
+    [picker dismissViewControllerAnimated:YES completion:^{
+        self.image = info[UIImagePickerControllerEditedImage];
+    }];
 }
 
 /// 用户提示
