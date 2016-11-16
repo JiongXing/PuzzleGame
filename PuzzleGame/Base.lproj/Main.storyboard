@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,9 +26,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rml-Ih-ByM">
                                 <rect key="frame" x="16" y="72" width="288" height="288"/>
                                 <color key="backgroundColor" red="1" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Rml-Ih-ByM" secondAttribute="height" multiplier="1:1" id="Tvq-lD-HT3"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Sw-6tk">
                                 <rect key="frame" x="16" y="433" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="5pa-Tx-8zc"/>
+                                    <constraint firstAttribute="height" constant="30" id="iDa-AO-AzP"/>
+                                </constraints>
                                 <state key="normal" title="难度：低"/>
                                 <connections>
                                     <action selector="onHardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3BW-zD-5MD"/>
@@ -35,6 +43,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4p-S1-S8y">
                                 <rect key="frame" x="229" y="471" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="OiU-aj-aqy"/>
+                                    <constraint firstAttribute="height" constant="30" id="TQR-rz-IiW"/>
+                                </constraints>
                                 <state key="normal" title="读取进度"/>
                                 <connections>
                                     <action selector="onLoadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IWc-cJ-Nfa"/>
@@ -42,6 +54,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9Z-vI-UHU">
                                 <rect key="frame" x="111" y="433" width="99" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="Rlc-GA-ChF"/>
+                                    <constraint firstAttribute="height" constant="30" id="csZ-GB-3W6"/>
+                                </constraints>
                                 <state key="normal" title="AI：A*算法"/>
                                 <connections>
                                     <action selector="onAiButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1D-6g-8eu"/>
@@ -49,6 +65,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duP-oQ-88r">
                                 <rect key="frame" x="16" y="471" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="V0h-qi-ZIA"/>
+                                    <constraint firstAttribute="width" constant="75" id="g7J-xH-C3U"/>
+                                </constraints>
                                 <state key="normal" title="保存进度"/>
                                 <connections>
                                     <action selector="onSaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xH4-uK-JZM"/>
@@ -56,6 +76,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w06-2y-Fhd">
                                 <rect key="frame" x="16" y="395" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HMM-J8-Ee0"/>
+                                    <constraint firstAttribute="width" constant="75" id="YKQ-1Y-zEB"/>
+                                </constraints>
                                 <state key="normal" title="选图"/>
                                 <connections>
                                     <action selector="onSelectPictureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pjb-3m-Mpa"/>
@@ -64,7 +88,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ocs-QH-Fvw">
                                 <rect key="frame" x="130" y="395" width="60" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="m6i-OF-HvU"/>
+                                    <constraint firstAttribute="height" constant="30" id="9wf-Tx-2k5"/>
+                                    <constraint firstAttribute="width" constant="60" id="fy6-Wh-TWe"/>
                                 </constraints>
                                 <state key="normal" title="打乱"/>
                                 <connections>
@@ -73,6 +98,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RpX-Cv-l4o">
                                 <rect key="frame" x="229" y="395" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="dm0-EH-A40"/>
+                                    <constraint firstAttribute="height" constant="30" id="zUX-KP-YFR"/>
+                                </constraints>
                                 <state key="normal" title="重置"/>
                                 <connections>
                                     <action selector="onResetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E57-4c-wUf"/>
@@ -80,6 +109,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQK-jh-NvX">
                                 <rect key="frame" x="229" y="433" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="NXj-8W-vRm"/>
+                                    <constraint firstAttribute="height" constant="30" id="ijU-cI-y54"/>
+                                </constraints>
                                 <state key="normal" title="自动"/>
                                 <connections>
                                     <action selector="onAutoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kqZ-cx-6PS"/>
@@ -88,33 +121,25 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Rml-Ih-ByM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="1Bk-kH-dsw"/>
-                            <constraint firstItem="duP-oQ-88r" firstAttribute="top" secondItem="v77-Sw-6tk" secondAttribute="bottom" constant="8" symbolic="YES" id="32O-IT-hHR"/>
-                            <constraint firstItem="VQK-jh-NvX" firstAttribute="leading" secondItem="R9Z-vI-UHU" secondAttribute="trailing" constant="19" id="3eF-77-oRv"/>
-                            <constraint firstItem="Ocs-QH-Fvw" firstAttribute="centerX" secondItem="R9Z-vI-UHU" secondAttribute="centerX" id="4un-C5-8Oc"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="duP-oQ-88r" secondAttribute="bottom" constant="67" id="5cn-2u-iIt"/>
-                            <constraint firstItem="Ocs-QH-Fvw" firstAttribute="baseline" secondItem="RpX-Cv-l4o" secondAttribute="baseline" id="5wM-e3-aeY"/>
-                            <constraint firstItem="v77-Sw-6tk" firstAttribute="leading" secondItem="duP-oQ-88r" secondAttribute="leading" id="7dG-ph-pIS"/>
-                            <constraint firstItem="w06-2y-Fhd" firstAttribute="trailing" secondItem="v77-Sw-6tk" secondAttribute="trailing" id="8O2-qV-emo"/>
-                            <constraint firstItem="VQK-jh-NvX" firstAttribute="leading" secondItem="R4p-S1-S8y" secondAttribute="leading" id="GZa-Oa-CbT"/>
-                            <constraint firstItem="Rml-Ih-ByM" firstAttribute="centerX" secondItem="Ocs-QH-Fvw" secondAttribute="centerX" id="OXk-Np-7fl"/>
-                            <constraint firstItem="duP-oQ-88r" firstAttribute="baseline" secondItem="R4p-S1-S8y" secondAttribute="baseline" id="Tf8-fa-NF8"/>
-                            <constraint firstItem="Rml-Ih-ByM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VAS-eg-Nbb"/>
-                            <constraint firstItem="Rml-Ih-ByM" firstAttribute="trailing" secondItem="RpX-Cv-l4o" secondAttribute="trailing" id="Yo9-Is-Bq9"/>
-                            <constraint firstItem="v77-Sw-6tk" firstAttribute="trailing" secondItem="duP-oQ-88r" secondAttribute="trailing" id="bR9-m7-Ipn"/>
-                            <constraint firstItem="RpX-Cv-l4o" firstAttribute="trailing" secondItem="VQK-jh-NvX" secondAttribute="trailing" id="dpL-aF-HcZ"/>
-                            <constraint firstItem="RpX-Cv-l4o" firstAttribute="leading" secondItem="VQK-jh-NvX" secondAttribute="leading" id="g5M-ws-McL"/>
-                            <constraint firstItem="Rml-Ih-ByM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hfP-Zk-sJA"/>
-                            <constraint firstItem="R9Z-vI-UHU" firstAttribute="leading" secondItem="v77-Sw-6tk" secondAttribute="trailing" constant="20" id="lHH-3C-w9n"/>
-                            <constraint firstItem="w06-2y-Fhd" firstAttribute="top" secondItem="Rml-Ih-ByM" secondAttribute="bottom" constant="35" id="mP9-53-f3b"/>
-                            <constraint firstItem="v77-Sw-6tk" firstAttribute="top" secondItem="w06-2y-Fhd" secondAttribute="bottom" constant="8" symbolic="YES" id="oY6-3o-93x"/>
-                            <constraint firstItem="w06-2y-Fhd" firstAttribute="leading" secondItem="v77-Sw-6tk" secondAttribute="leading" id="pnI-K9-NF8"/>
-                            <constraint firstItem="Rml-Ih-ByM" firstAttribute="leading" secondItem="w06-2y-Fhd" secondAttribute="leading" id="rah-NL-4mm"/>
-                            <constraint firstItem="R9Z-vI-UHU" firstAttribute="baseline" secondItem="VQK-jh-NvX" secondAttribute="baseline" id="tPa-KH-gi6"/>
-                            <constraint firstItem="Ocs-QH-Fvw" firstAttribute="leading" secondItem="w06-2y-Fhd" secondAttribute="trailing" constant="39" id="tZl-xG-px9"/>
-                            <constraint firstItem="w06-2y-Fhd" firstAttribute="baseline" secondItem="Ocs-QH-Fvw" secondAttribute="baseline" id="ttI-D5-OAe"/>
-                            <constraint firstItem="v77-Sw-6tk" firstAttribute="baseline" secondItem="R9Z-vI-UHU" secondAttribute="baseline" id="yjF-Rm-gE9"/>
-                            <constraint firstItem="VQK-jh-NvX" firstAttribute="trailing" secondItem="R4p-S1-S8y" secondAttribute="trailing" id="zG8-Zy-ZXr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Rml-Ih-ByM" secondAttribute="leading" id="0zS-Pg-jvu"/>
+                            <constraint firstItem="w06-2y-Fhd" firstAttribute="top" secondItem="Rml-Ih-ByM" secondAttribute="bottom" constant="35" id="1vR-zt-Mps"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="v77-Sw-6tk" secondAttribute="leading" id="2fx-tH-Qhp"/>
+                            <constraint firstItem="RpX-Cv-l4o" firstAttribute="top" secondItem="Rml-Ih-ByM" secondAttribute="bottom" constant="35" id="65y-my-nVC"/>
+                            <constraint firstItem="Rml-Ih-ByM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="6DZ-oR-6k3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rml-Ih-ByM" secondAttribute="trailing" id="6mW-Ti-lM8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RpX-Cv-l4o" secondAttribute="trailing" id="6xi-sq-KJR"/>
+                            <constraint firstItem="v77-Sw-6tk" firstAttribute="top" secondItem="w06-2y-Fhd" secondAttribute="bottom" constant="8" id="8Rx-QY-diW"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="duP-oQ-88r" secondAttribute="leading" id="BYw-vx-Ym1"/>
+                            <constraint firstItem="Ocs-QH-Fvw" firstAttribute="top" secondItem="Rml-Ih-ByM" secondAttribute="bottom" constant="35" id="Cfw-EM-EQu"/>
+                            <constraint firstItem="Ocs-QH-Fvw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fpm-Uk-miH"/>
+                            <constraint firstItem="duP-oQ-88r" firstAttribute="top" secondItem="v77-Sw-6tk" secondAttribute="bottom" constant="8" id="LdI-ZQ-KuS"/>
+                            <constraint firstItem="R9Z-vI-UHU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WzF-Jj-p9g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R4p-S1-S8y" secondAttribute="trailing" id="ZpX-IU-Dkx"/>
+                            <constraint firstItem="VQK-jh-NvX" firstAttribute="top" secondItem="RpX-Cv-l4o" secondAttribute="bottom" constant="8" id="aaH-sa-Ght"/>
+                            <constraint firstItem="R9Z-vI-UHU" firstAttribute="top" secondItem="Ocs-QH-Fvw" secondAttribute="bottom" constant="8" id="dOm-Iu-pAC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VQK-jh-NvX" secondAttribute="trailing" id="urj-KJ-Y0v"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="w06-2y-Fhd" secondAttribute="leading" id="uyn-Qt-MQX"/>
+                            <constraint firstItem="R4p-S1-S8y" firstAttribute="top" secondItem="duP-oQ-88r" secondAttribute="top" id="wMB-6h-luC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Puzzle Game" id="eMG-TY-ijr"/>
