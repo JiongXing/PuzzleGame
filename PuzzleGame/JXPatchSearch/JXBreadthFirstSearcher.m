@@ -16,9 +16,9 @@
         return nil;
     }
     
-    /// 关闭堆，存放已搜索过的状态
+    // 关闭堆，存放已搜索过的状态
     NSMutableDictionary *close = [NSMutableDictionary dictionary];
-    /// 开放列表，存放由已搜索过的状态所扩展出来的未搜索状态
+    // 开放队列，存放由已搜索过的状态所扩展出来的未搜索状态
     NSMutableArray *open = [NSMutableArray array];
     
     [open addObject:self.startStatus];
@@ -37,7 +37,6 @@
         
         // 如果找到目标状态
         if (self.equalComparator(self.targetStatus, status)) {
-            NSLog(@"---------- 搜索完成 ----------");
             path = [self constructPathWithStatus:status isLast:YES];
             break;
         }
@@ -45,7 +44,7 @@
         // 否则，扩展出子状态
         [open addObjectsFromArray:[status childStatus]];
     }
-    NSLog(@"close count: %@", @(close.count));
+    NSLog(@"总搜索数量: %@", @(close.count));
     return path;
 }
 

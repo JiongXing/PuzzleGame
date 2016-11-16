@@ -16,11 +16,11 @@
         return nil;
     }
     
-    /// 关闭堆，存放已搜索过的状态
+    // 关闭堆，存放已搜索过的状态
     NSMutableDictionary *positiveClose = [NSMutableDictionary dictionary];
     NSMutableDictionary *negativeClose = [NSMutableDictionary dictionary];
     
-    /// 开放列表，存放由已搜索过的状态所扩展出来的未搜索状态
+    // 开放队列，存放由已搜索过的状态所扩展出来的未搜索状态
     NSMutableArray *positiveOpen = [NSMutableArray array];
     NSMutableArray *negativeOpen = [NSMutableArray array];
     
@@ -59,7 +59,6 @@
         
         // 如果本状态同时存在于另一个已检查堆，则说明正反两棵搜索树出现交叉，搜索结束
         if (otherClose[statusIdentifier]) {
-            NSLog(@"---------- 搜索完成 ----------");
             NSMutableArray *positivePath = [self constructPathWithStatus:positiveClose[statusIdentifier] isLast:YES];
             NSMutableArray *negativePath = [self constructPathWithStatus:negativeClose[statusIdentifier] isLast:NO];
             // 拼接正反两条路径
@@ -71,7 +70,7 @@
         // 否则，扩展出子状态
         [open addObjectsFromArray:[status childStatus]];
     }
-    NSLog(@"close count: %@", @(positiveClose.count + negativeClose.count - 1));
+    NSLog(@"总搜索数量: %@", @(positiveClose.count + negativeClose.count - 1));
     return path;
 }
 

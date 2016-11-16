@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "PuzzlePiece.h"
 #import "JXPathSearcher.h"
+#import "JXAStarSearcher.h"
 
 /// 表示游戏过程中，某一个时刻，所有方块的排列状态
-@interface PuzzleStatus : NSObject <JXPathSearcherStatus>
+@interface PuzzleStatus : NSObject <JXPathSearcherStatus, JXAStarSearcherStatus>
 
 /// 矩阵维数
 @property (nonatomic, assign) NSInteger dimension;

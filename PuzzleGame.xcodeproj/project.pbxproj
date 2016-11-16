@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		943F197C1DDB17240034A8F3 /* JXAStarSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F19751DDB17240034A8F3 /* JXAStarSearcher.m */; };
+		943F197D1DDB17240034A8F3 /* JXBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F19771DDB17240034A8F3 /* JXBreadthFirstSearcher.m */; };
+		943F197E1DDB17240034A8F3 /* JXDoubleBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F19791DDB17240034A8F3 /* JXDoubleBreadthFirstSearcher.m */; };
+		943F197F1DDB17240034A8F3 /* JXPathSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F197B1DDB17240034A8F3 /* JXPathSearcher.m */; };
+		943F19831DDB17320034A8F3 /* JXPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F19821DDB17320034A8F3 /* JXPriorityQueue.m */; };
 		945098EA1DD5968A0008F3C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 945098E91DD5968A0008F3C8 /* main.m */; };
 		945098ED1DD5968A0008F3C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 945098EC1DD5968A0008F3C8 /* AppDelegate.m */; };
 		945098F01DD5968B0008F3C8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 945098EF1DD5968B0008F3C8 /* ViewController.m */; };
@@ -15,12 +20,19 @@
 		945098F81DD5968B0008F3C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 945098F61DD5968B0008F3C8 /* LaunchScreen.storyboard */; };
 		945099011DD5A8A00008F3C8 /* PuzzleStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 945099001DD5A8A00008F3C8 /* PuzzleStatus.m */; };
 		945099041DD5AAA20008F3C8 /* PuzzlePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 945099031DD5AAA20008F3C8 /* PuzzlePiece.m */; };
-		9465D49C1DD9D0E80038A8D2 /* JXDoubleBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465D49B1DD9D0E80038A8D2 /* JXDoubleBreadthFirstSearcher.m */; };
-		94B90EF61DD864F000C875C2 /* JXPathSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B90EF51DD864F000C875C2 /* JXPathSearcher.m */; };
-		94B90EF91DD8655300C875C2 /* JXBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B90EF81DD8655300C875C2 /* JXBreadthFirstSearcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		943F19741DDB17240034A8F3 /* JXAStarSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXAStarSearcher.h; sourceTree = "<group>"; };
+		943F19751DDB17240034A8F3 /* JXAStarSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXAStarSearcher.m; sourceTree = "<group>"; };
+		943F19761DDB17240034A8F3 /* JXBreadthFirstSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXBreadthFirstSearcher.h; sourceTree = "<group>"; };
+		943F19771DDB17240034A8F3 /* JXBreadthFirstSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXBreadthFirstSearcher.m; sourceTree = "<group>"; };
+		943F19781DDB17240034A8F3 /* JXDoubleBreadthFirstSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXDoubleBreadthFirstSearcher.h; sourceTree = "<group>"; };
+		943F19791DDB17240034A8F3 /* JXDoubleBreadthFirstSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXDoubleBreadthFirstSearcher.m; sourceTree = "<group>"; };
+		943F197A1DDB17240034A8F3 /* JXPathSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPathSearcher.h; sourceTree = "<group>"; };
+		943F197B1DDB17240034A8F3 /* JXPathSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPathSearcher.m; sourceTree = "<group>"; };
+		943F19811DDB17320034A8F3 /* JXPriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPriorityQueue.h; sourceTree = "<group>"; };
+		943F19821DDB17320034A8F3 /* JXPriorityQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPriorityQueue.m; sourceTree = "<group>"; };
 		945098E51DD5968A0008F3C8 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		945098E91DD5968A0008F3C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		945098EB1DD5968A0008F3C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -35,12 +47,6 @@
 		945099001DD5A8A00008F3C8 /* PuzzleStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleStatus.m; sourceTree = "<group>"; };
 		945099021DD5AAA20008F3C8 /* PuzzlePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlePiece.h; sourceTree = "<group>"; };
 		945099031DD5AAA20008F3C8 /* PuzzlePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlePiece.m; sourceTree = "<group>"; };
-		9465D49A1DD9D0E80038A8D2 /* JXDoubleBreadthFirstSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXDoubleBreadthFirstSearcher.h; sourceTree = "<group>"; };
-		9465D49B1DD9D0E80038A8D2 /* JXDoubleBreadthFirstSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXDoubleBreadthFirstSearcher.m; sourceTree = "<group>"; };
-		94B90EF41DD864F000C875C2 /* JXPathSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPathSearcher.h; sourceTree = "<group>"; };
-		94B90EF51DD864F000C875C2 /* JXPathSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPathSearcher.m; sourceTree = "<group>"; };
-		94B90EF71DD8655300C875C2 /* JXBreadthFirstSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXBreadthFirstSearcher.h; sourceTree = "<group>"; };
-		94B90EF81DD8655300C875C2 /* JXBreadthFirstSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXBreadthFirstSearcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		943F19731DDB17240034A8F3 /* JXPatchSearch */ = {
+			isa = PBXGroup;
+			children = (
+				943F197A1DDB17240034A8F3 /* JXPathSearcher.h */,
+				943F197B1DDB17240034A8F3 /* JXPathSearcher.m */,
+				943F19761DDB17240034A8F3 /* JXBreadthFirstSearcher.h */,
+				943F19771DDB17240034A8F3 /* JXBreadthFirstSearcher.m */,
+				943F19781DDB17240034A8F3 /* JXDoubleBreadthFirstSearcher.h */,
+				943F19791DDB17240034A8F3 /* JXDoubleBreadthFirstSearcher.m */,
+				943F19741DDB17240034A8F3 /* JXAStarSearcher.h */,
+				943F19751DDB17240034A8F3 /* JXAStarSearcher.m */,
+			);
+			path = JXPatchSearch;
+			sourceTree = "<group>";
+		};
+		943F19801DDB17320034A8F3 /* JXPriorityQueue */ = {
+			isa = PBXGroup;
+			children = (
+				943F19811DDB17320034A8F3 /* JXPriorityQueue.h */,
+				943F19821DDB17320034A8F3 /* JXPriorityQueue.m */,
+			);
+			path = JXPriorityQueue;
+			sourceTree = "<group>";
+		};
 		945098DC1DD5968A0008F3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -81,12 +111,8 @@
 				945099001DD5A8A00008F3C8 /* PuzzleStatus.m */,
 				945099021DD5AAA20008F3C8 /* PuzzlePiece.h */,
 				945099031DD5AAA20008F3C8 /* PuzzlePiece.m */,
-				94B90EF41DD864F000C875C2 /* JXPathSearcher.h */,
-				94B90EF51DD864F000C875C2 /* JXPathSearcher.m */,
-				94B90EF71DD8655300C875C2 /* JXBreadthFirstSearcher.h */,
-				94B90EF81DD8655300C875C2 /* JXBreadthFirstSearcher.m */,
-				9465D49A1DD9D0E80038A8D2 /* JXDoubleBreadthFirstSearcher.h */,
-				9465D49B1DD9D0E80038A8D2 /* JXDoubleBreadthFirstSearcher.m */,
+				943F19731DDB17240034A8F3 /* JXPatchSearch */,
+				943F19801DDB17320034A8F3 /* JXPriorityQueue */,
 				945098F11DD5968B0008F3C8 /* Main.storyboard */,
 				945098F41DD5968B0008F3C8 /* Assets.xcassets */,
 				945098F61DD5968B0008F3C8 /* LaunchScreen.storyboard */,
@@ -177,12 +203,14 @@
 			files = (
 				945098F01DD5968B0008F3C8 /* ViewController.m in Sources */,
 				945098ED1DD5968A0008F3C8 /* AppDelegate.m in Sources */,
+				943F197C1DDB17240034A8F3 /* JXAStarSearcher.m in Sources */,
 				945098EA1DD5968A0008F3C8 /* main.m in Sources */,
 				945099011DD5A8A00008F3C8 /* PuzzleStatus.m in Sources */,
+				943F197E1DDB17240034A8F3 /* JXDoubleBreadthFirstSearcher.m in Sources */,
 				945099041DD5AAA20008F3C8 /* PuzzlePiece.m in Sources */,
-				9465D49C1DD9D0E80038A8D2 /* JXDoubleBreadthFirstSearcher.m in Sources */,
-				94B90EF61DD864F000C875C2 /* JXPathSearcher.m in Sources */,
-				94B90EF91DD8655300C875C2 /* JXBreadthFirstSearcher.m in Sources */,
+				943F197F1DDB17240034A8F3 /* JXPathSearcher.m in Sources */,
+				943F197D1DDB17240034A8F3 /* JXBreadthFirstSearcher.m in Sources */,
+				943F19831DDB17320034A8F3 /* JXPriorityQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

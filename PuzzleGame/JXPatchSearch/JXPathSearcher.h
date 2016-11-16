@@ -12,7 +12,7 @@
 @protocol JXPathSearcherStatus <NSObject>
 
 /// 父状态
-@property (nonatomic, copy) id<JXPathSearcherStatus> parentStatus;
+@property (nonatomic, strong) id<JXPathSearcherStatus> parentStatus;
 
 /// 此状态的唯一标识
 - (NSString *)statusIdentifier;

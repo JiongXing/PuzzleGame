@@ -10,6 +10,7 @@
 #import "PuzzleStatus.h"
 #import "JXBreadthFirstSearcher.h"
 #import "JXDoubleBreadthFirstSearcher.h"
+#import "JXAStarSearcher.h"
 
 @interface ViewController ()
 
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) UIImage *image;
 /// 矩阵维数
 @property (nonatomic, assign) NSInteger dimension;
-/// 当前算法。0：广搜； 1：双向广搜； 2：A*算法
+/// 当前算法。1：广搜； 2：双向广搜； 3：A*算法
 @property (nonatomic, assign) NSInteger algorithm;
 
 #pragma mark - 状态
@@ -46,7 +47,7 @@
     [super viewDidLoad];
     
     self.dimension = 3;
-    self.algorithm = 1;
+    self.algorithm = 3;
 }
 
 /// 选择图片
@@ -62,8 +63,9 @@
     if (self.isAutoGaming) {
         return;
     }
-    [self.currentStatus shuffleCount:self.dimension * self.dimension * 5];
+    [self.currentStatus shuffleCount:self.dimension * 10];
     [self reloadWithStatus:self.currentStatus];
+    NSLog(@"当前状态序列：%@", [self.currentStatus statusIdentifier]);
 }
 
 /// 重置游戏
@@ -117,13 +119,13 @@
     __weak typeof(self) weakSelf = self;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择AI算法" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alert addAction:[UIAlertAction actionWithTitle:@"广搜" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        weakSelf.algorithm = 0;
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"双向广搜" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         weakSelf.algorithm = 1;
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"A*搜索" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:@"双向广搜" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         weakSelf.algorithm = 2;
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"A*搜索" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.algorithm = 3;
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
@@ -137,17 +139,17 @@
     
     JXPathSearcher *searcher = nil;
     switch (self.algorithm) {
-        case 0:
-            searcher = [[JXBreadthFirstSearcher alloc] init];
-            NSLog(@"广度优先搜索！");
-            break;
         case 1:
-            searcher = [[JXDoubleBreadthFirstSearcher alloc] init];
-            NSLog(@"双向广度优先搜索！");
+            searcher = [[JXBreadthFirstSearcher alloc] init];
+            NSLog(@"----- 广度优先搜索 -----");
             break;
         case 2:
             searcher = [[JXDoubleBreadthFirstSearcher alloc] init];
-            NSLog(@"A*搜索！");
+            NSLog(@"----- 双向广度优先搜索 -----");
+            break;
+        case 3:
+            searcher = [[JXAStarSearcher alloc] init];
+            NSLog(@"----- A*搜索 -----");
             break;
         default:
             break;
@@ -160,7 +162,7 @@
     }];
     NSMutableArray<PuzzleStatus *> *path = [searcher search];
     __block NSInteger pathCount = path.count;
-    NSLog(@"path count:%@", @(pathCount));
+    NSLog(@"需要移动%@步", @(pathCount));
     
     if (!path || pathCount == 0) {
         return;
@@ -185,15 +187,14 @@
                 // 显示排列
                 [self reloadWithStatus:obj];
                 // 显示步数
-                if ((-- pathCount) > 0) {
-                    self.messageLabel.text = [NSString stringWithFormat:@"自动(%@)", @(pathCount)];
+                if (pathCount > 1) {
+                    self.messageLabel.text = [NSString stringWithFormat:@"自动(%@)", @(pathCount --)];
                 }
                 else {
                     self.messageLabel.text = @"自动";
                     [self.messageLabel removeFromSuperview];
                     self.autoButton.hidden = NO;
                 }
-//                NSLog(@"%@", [obj statusIdentifier]);
             });
         }];
         
@@ -319,18 +320,18 @@
 }
 
 - (void)setAlgorithm:(NSInteger)algorithm {
-    if (algorithm < 0 || algorithm > 2) {
+    if (algorithm < 1 || algorithm > 3) {
         return;
     }
     _algorithm = algorithm;
     NSString *title;
-    if (algorithm == 0) {
+    if (algorithm == 1) {
         title = @"AI：广搜";
     }
-    else if (algorithm == 1) {
+    else if (algorithm == 2) {
         title = @"AI：双向广搜";
     }
-    else if (algorithm == 2) {
+    else if (algorithm == 3) {
         title = @"AI：A*算法";
     }
     [self.aiButton setTitle:title forState:UIControlStateNormal];
@@ -359,6 +360,10 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:action];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    NSLog(@"内存警告");
 }
 
 @end

@@ -8,8 +8,15 @@
 
 #import "PuzzleStatus.h"
 
+@interface PuzzleStatus ()
+
+@end
+
 @implementation PuzzleStatus {
-    PuzzleStatus *_parentStatus;
+    id<JXPathSearcherStatus> _parentStatus;
+    NSInteger _gValue;
+    NSInteger _hValue;
+    NSInteger _fValue;
 }
 
 + (instancetype)statusWithDimension:(NSInteger)dimension image:(UIImage *)image {
@@ -57,7 +64,7 @@
 }
 
 - (void)shuffleCount:(NSInteger)count {
-    NSLog(@"随机%@步", @(count));
+    NSLog(@"打乱：随机%@步", @(count));
     // 记录前置状态，避免来回移动
     // 前两个状态的空格位置
     NSInteger ancestorIndex = -1;
@@ -147,7 +154,7 @@
     return self.emptyIndex + 1;
 }
 
-#pragma mark - 状态协议
+#pragma mark - 状态(结点)协议
 - (NSString *)statusIdentifier {
     NSMutableString *str = [NSMutableString string];
     [self.pieceArray enumerateObjectsUsingBlock:^(PuzzlePiece * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -194,6 +201,46 @@
     [status moveToIndex:index];
     [array addObject:status];
     status.parentStatus = self;
+}
+
+#pragma mark - A*搜索状态(结点)协议
+- (NSInteger)gValue {
+    return _gValue;
+}
+
+- (void)setGValue:(NSInteger)gValue {
+    _gValue = gValue;
+}
+
+- (NSInteger)hValue {
+    return _hValue;
+}
+
+- (void)setHValue:(NSInteger)hValue {
+    _hValue = hValue;
+}
+
+- (NSInteger)fValue {
+    return _fValue;
+}
+
+- (void)setFValue:(NSInteger)fValue {
+    _fValue = fValue;
+}
+
+/// 估算从当前状态到目标状态的代价
+- (NSInteger)estimateToTargetStatus:(id<JXPathSearcherStatus>)targetStatus {
+    // 计算每一个方块距离它正确位置的距离
+    // 曼哈顿距离
+    __block NSInteger manhattanDistance = 0;
+    __weak typeof(self) weakSelf = self;
+    [self.pieceArray enumerateObjectsUsingBlock:^(PuzzlePiece * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger rowDistance = ABS([weakSelf rowOfIndex:[obj.ID integerValue]] - [(PuzzleStatus *)targetStatus rowOfIndex:idx]);
+        NSInteger colDistance = ABS([weakSelf colOfIndex:[obj.ID integerValue]] - [(PuzzleStatus *)targetStatus colOfIndex:idx]);
+        manhattanDistance += (rowDistance + colDistance);
+    }];
+
+    return manhattanDistance * 2;
 }
 
 @end
