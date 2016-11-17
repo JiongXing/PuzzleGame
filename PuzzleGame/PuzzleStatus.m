@@ -19,22 +19,22 @@
     NSInteger _fValue;
 }
 
-+ (instancetype)statusWithDimension:(NSInteger)dimension image:(UIImage *)image {
-    if (dimension < 3 || !image) {
++ (instancetype)statusWithMatrixOrder:(NSInteger)matrixOrder image:(UIImage *)image {
+    if (matrixOrder < 3 || !image) {
         return nil;
     }
     
     PuzzleStatus *status = [[PuzzleStatus alloc] init];
-    status.dimension = dimension;
-    status.pieceArray = [NSMutableArray arrayWithCapacity:dimension * dimension];
+    status.matrixOrder = matrixOrder;
+    status.pieceArray = [NSMutableArray arrayWithCapacity:matrixOrder * matrixOrder];
     status.emptyIndex = -1;
     
-    CGFloat pieceImageWidh = image.size.width / dimension;
-    CGFloat pieceImageHeight = image.size.height / dimension;
+    CGFloat pieceImageWidh = image.size.width / matrixOrder;
+    CGFloat pieceImageHeight = image.size.height / matrixOrder;
     
     NSInteger ID = 0;
-    for (NSInteger row = 0; row < dimension; row ++) {
-        for (NSInteger col = 0; col < dimension; col ++) {
+    for (NSInteger row = 0; row < matrixOrder; row ++) {
+        for (NSInteger col = 0; col < matrixOrder; col ++) {
             // 切割图片
             CGRect rect = CGRectMake(col * pieceImageWidh, row * pieceImageHeight, pieceImageWidh, pieceImageHeight);
             CGImageRef imgRef = CGImageCreateWithImageInRect(image.CGImage, rect);
@@ -47,7 +47,7 @@
 
 - (instancetype)copyStatus {
     PuzzleStatus *status = [[PuzzleStatus alloc] init];
-    status.dimension = self.dimension;
+    status.matrixOrder = self.matrixOrder;
     status.pieceArray = [self.pieceArray mutableCopy];
     status.emptyIndex = self.emptyIndex;
     return status;
@@ -64,7 +64,6 @@
 }
 
 - (void)shuffleCount:(NSInteger)count {
-    NSLog(@"打乱：随机%@步", @(count));
     // 记录前置状态，避免来回移动
     // 前两个状态的空格位置
     NSInteger ancestorIndex = -1;
@@ -100,12 +99,12 @@
 
 /// 求行号
 - (NSInteger)rowOfIndex:(NSInteger)index {
-    return index / self.dimension;
+    return index / self.matrixOrder;
 }
 
 /// 求列号
 - (NSInteger)colOfIndex:(NSInteger)index {
-    return index % self.dimension;
+    return index % self.matrixOrder;
 }
 
 /// 空格是否能移动到某个位置
@@ -130,14 +129,14 @@
     if ([self rowOfIndex:self.emptyIndex] == 0) {
         return -1;
     }
-    return self.emptyIndex - self.dimension;
+    return self.emptyIndex - self.matrixOrder;
 }
 
 - (NSInteger)downIndex {
-    if ([self rowOfIndex:self.emptyIndex] == self.dimension - 1) {
+    if ([self rowOfIndex:self.emptyIndex] == self.matrixOrder - 1) {
         return -1;
     }
-    return self.emptyIndex + self.dimension;
+    return self.emptyIndex + self.matrixOrder;
 }
 
 - (NSInteger)leftIndex {
@@ -148,7 +147,7 @@
 }
 
 - (NSInteger)rightIndex {
-    if ([self colOfIndex:self.emptyIndex] == self.dimension - 1) {
+    if ([self colOfIndex:self.emptyIndex] == self.matrixOrder - 1) {
         return -1;
     }
     return self.emptyIndex + 1;

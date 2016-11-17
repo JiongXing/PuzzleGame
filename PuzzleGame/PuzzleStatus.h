@@ -14,8 +14,8 @@
 /// 表示游戏过程中，某一个时刻，所有方块的排列状态
 @interface PuzzleStatus : NSObject <JXPathSearcherStatus, JXAStarSearcherStatus>
 
-/// 矩阵维数
-@property (nonatomic, assign) NSInteger dimension;
+/// 矩阵阶数
+@property (nonatomic, assign) NSInteger matrixOrder;
 
 /// 方块数组，按从上到下，从左到右，顺序排列
 @property (nonatomic, strong) NSMutableArray<PuzzlePiece *> *pieceArray;
@@ -23,8 +23,8 @@
 /// 空格位置，无空格时为-1
 @property (nonatomic, assign) NSInteger emptyIndex;
 
-/// 创建实例，dimension至少为3，image非空
-+ (instancetype)statusWithDimension:(NSInteger)dimension image:(UIImage *)image;
+/// 创建实例，matrixOrder至少为3，image非空
++ (instancetype)statusWithMatrixOrder:(NSInteger)matrixOrder image:(UIImage *)image;
 
 /// 复制本实例
 - (instancetype)copyStatus;

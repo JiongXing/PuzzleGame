@@ -23,8 +23,8 @@
 #pragma mark - 选项
 /// 图片
 @property (nonatomic, strong) UIImage *image;
-/// 矩阵维数
-@property (nonatomic, assign) NSInteger dimension;
+/// 矩阵阶数
+@property (nonatomic, assign) NSInteger matrixOrder;
 /// 当前算法。1：广搜； 2：双向广搜； 3：A*算法
 @property (nonatomic, assign) NSInteger algorithm;
 
@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dimension = 3;
+    self.matrixOrder = 3;
     self.algorithm = 3;
 }
 
@@ -79,7 +79,8 @@
     if (self.currentStatus.emptyIndex < 0) {
         return;
     }
-    [self.currentStatus shuffleCount:self.dimension * self.dimension * 10];
+    NSLog(@"打乱顺序：当前为%@阶方阵, 随机移动%@步", @(self.matrixOrder), @(self.matrixOrder * self.matrixOrder * 10));
+    [self.currentStatus shuffleCount:self.matrixOrder * self.matrixOrder * 10];
     [self reloadWithStatus:self.currentStatus];
 }
 
@@ -95,7 +96,7 @@
     if (self.currentStatus) {
         [self.currentStatus removeAllPieces];
     }
-    self.currentStatus = [PuzzleStatus statusWithDimension:self.dimension image:self.image];
+    self.currentStatus = [PuzzleStatus statusWithMatrixOrder:self.matrixOrder image:self.image];
     [self.currentStatus.pieceArray enumerateObjectsUsingBlock:^(PuzzlePiece * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj addTarget:self action:@selector(onPieceTouch:) forControlEvents:UIControlEventTouchUpInside];
     }];
@@ -113,13 +114,13 @@
     __weak typeof(self) weakSelf = self;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择难度" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alert addAction:[UIAlertAction actionWithTitle:@"高" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        weakSelf.dimension = 5;
+        weakSelf.matrixOrder = 5;
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"中" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        weakSelf.dimension = 4;
+        weakSelf.matrixOrder = 4;
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"低" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        weakSelf.dimension = 3;
+        weakSelf.matrixOrder = 3;
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
@@ -159,15 +160,12 @@
     switch (self.algorithm) {
         case 1:
             searcher = [[JXBreadthFirstSearcher alloc] init];
-            NSLog(@"----- 广度优先搜索 -----");
             break;
         case 2:
             searcher = [[JXDoubleBreadthFirstSearcher alloc] init];
-            NSLog(@"----- 双向广度优先搜索 -----");
             break;
         case 3:
             searcher = [[JXAStarSearcher alloc] init];
-            NSLog(@"----- A*搜索 -----");
             break;
         default:
             break;
@@ -180,7 +178,7 @@
     }];
     NSMutableArray<PuzzleStatus *> *path = [searcher search];
     __block NSInteger pathCount = path.count;
-    NSLog(@"需要移动%@步", @(pathCount));
+    NSLog(@"需要移动：%@步", @(pathCount));
     
     if (!path || pathCount == 0) {
         return;
@@ -274,9 +272,8 @@
         return;
     }
     
-    NSLog(@"current:%@", [status statusIdentifier]);
     if (![status canMoveToIndex:pieceIndex]) {
-        NSLog(@"无法移动，to index:%@",  @(pieceIndex));
+        NSLog(@"无法移动，target index:%@",  @(pieceIndex));
         return;
     }
     
@@ -290,10 +287,10 @@
 }
 
 - (void)showCurrentStatusOnView:(UIView *)view {
-    CGFloat size = CGRectGetWidth(view.bounds) / self.dimension;
+    CGFloat size = CGRectGetWidth(view.bounds) / self.matrixOrder;
     NSInteger index = 0;
-    for (NSInteger row = 0; row < self.dimension; ++ row) {
-        for (NSInteger col = 0; col < self.dimension; ++ col) {
+    for (NSInteger row = 0; row < self.matrixOrder; ++ row) {
+        for (NSInteger col = 0; col < self.matrixOrder; ++ col) {
             PuzzlePiece *piece = self.currentStatus.pieceArray[index ++];
             piece.frame = CGRectMake(col * size, row * size, size, size);
             [view addSubview:piece];
@@ -305,8 +302,8 @@
     [UIView animateWithDuration:0.25 animations:^{
         CGSize size = status.pieceArray.firstObject.frame.size;
         NSInteger index = 0;
-        for (NSInteger row = 0; row < self.dimension; ++ row) {
-            for (NSInteger col = 0; col < self.dimension; ++ col) {
+        for (NSInteger row = 0; row < self.matrixOrder; ++ row) {
+            for (NSInteger col = 0; col < self.matrixOrder; ++ col) {
                 PuzzlePiece *piece = status.pieceArray[index ++];
                 piece.frame = CGRectMake(col * size.width, row * size.height, size.width, size.height);
             }
@@ -314,19 +311,19 @@
     }];
 }
 
-- (void)setDimension:(NSInteger)dimension {
-    if (dimension < 3 || dimension > 5) {
+- (void)setMatrixOrder:(NSInteger)matrixOrder {
+    if (matrixOrder < 3 || matrixOrder > 5) {
         return;
     }
-    _dimension = dimension;
+    _matrixOrder = matrixOrder;
     NSString *title;
-    if (dimension == 3) {
+    if (matrixOrder == 3) {
         title = @"难度：低";
     }
-    else if (dimension == 4) {
+    else if (matrixOrder == 4) {
         title = @"难度：中";
     }
-    else if (dimension == 5) {
+    else if (matrixOrder == 5) {
         title = @"难度：高";
     }
     [self.hardButton setTitle:title forState:UIControlStateNormal];
@@ -340,12 +337,15 @@
     _algorithm = algorithm;
     NSString *title;
     if (algorithm == 1) {
+        NSLog(@"----- 广度优先搜索 -----");
         title = @"AI：广搜";
     }
     else if (algorithm == 2) {
+        NSLog(@"----- 双向广度优先搜索 -----");
         title = @"AI：双向广搜";
     }
     else if (algorithm == 3) {
+        NSLog(@"----- A*搜索 -----");
         title = @"AI：A*搜索";
     }
     [self.aiButton setTitle:title forState:UIControlStateNormal];
@@ -378,12 +378,10 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    NSLog(@"imagePickerControllerDidCancel");
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    NSLog(@"didFinishPickingMediaWithInfo");
     [picker dismissViewControllerAnimated:YES completion:^{
         self.image = info[UIImagePickerControllerEditedImage];
     }];
