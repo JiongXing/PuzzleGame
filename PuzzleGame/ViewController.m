@@ -159,12 +159,15 @@
     JXPathSearcher *searcher = nil;
     switch (self.algorithm) {
         case 1:
+            NSLog(@"----- 广度优先搜索 -----");
             searcher = [[JXBreadthFirstSearcher alloc] init];
             break;
         case 2:
+            NSLog(@"----- 双向广度优先搜索 -----");
             searcher = [[JXDoubleBreadthFirstSearcher alloc] init];
             break;
         case 3:
+            NSLog(@"----- A*搜索 -----");
             searcher = [[JXAStarSearcher alloc] init];
             break;
         default:
@@ -176,8 +179,11 @@
     [searcher setEqualComparator:^BOOL(PuzzleStatus *status1, PuzzleStatus *status2) {
         return [status1 equalWithStatus:status2];
     }];
+    // 开始搜索
+    NSDate *startDate = [NSDate date];
     NSMutableArray<PuzzleStatus *> *path = [searcher search];
     __block NSInteger pathCount = path.count;
+    NSLog(@"耗时：%.3f秒", [[NSDate date] timeIntervalSince1970] - [startDate timeIntervalSince1970]);
     NSLog(@"需要移动：%@步", @(pathCount));
     
     if (!path || pathCount == 0) {
@@ -337,15 +343,12 @@
     _algorithm = algorithm;
     NSString *title;
     if (algorithm == 1) {
-        NSLog(@"----- 广度优先搜索 -----");
         title = @"AI：广搜";
     }
     else if (algorithm == 2) {
-        NSLog(@"----- 双向广度优先搜索 -----");
         title = @"AI：双向广搜";
     }
     else if (algorithm == 3) {
-        NSLog(@"----- A*搜索 -----");
         title = @"AI：A*搜索";
     }
     [self.aiButton setTitle:title forState:UIControlStateNormal];
