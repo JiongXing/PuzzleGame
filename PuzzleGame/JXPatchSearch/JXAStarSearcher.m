@@ -64,7 +64,7 @@
             [open enQueue:obj];
         }];
     }
-    NSLog(@"总共搜索: %@", @(close.count));
+    NSLog(@"总共搜索: %@个状态", @(close.count));
     return path;
 }
 

@@ -70,7 +70,7 @@
         // 否则，扩展出子状态
         [open addObjectsFromArray:[status childStatus]];
     }
-    NSLog(@"总共搜索: %@", @(positiveClose.count + negativeClose.count - 1));
+    NSLog(@"总共搜索: %@个状态", @(positiveClose.count + negativeClose.count - 1));
     return path;
 }
 
