@@ -111,9 +111,11 @@
 - (BOOL)canMoveToIndex:(NSInteger)index {
     // 能移动的条件是
     // 1.没有超出边界
-    // 2.空格和目标位置处于同一行或同一列
-    return ([self rowOfIndex:self.emptyIndex] == [self rowOfIndex:index]) ||
-            ([self colOfIndex:self.emptyIndex] == [self colOfIndex:index]);
+    // 2.空格和目标位置处于同一行或同一列 且相邻
+    BOOL canRow = ([self rowOfIndex:self.emptyIndex] == [self rowOfIndex:index]) && (labs([self colOfIndex:self.emptyIndex] - [self colOfIndex:index]) == 1);
+    BOOL canCol = ([self colOfIndex:self.emptyIndex] == [self colOfIndex:index]) && (labs([self rowOfIndex:self.emptyIndex] - [self rowOfIndex:index]) == 1);
+    
+    return (canRow || canCol);
 }
 
 /// 把空格移动到某个位置
