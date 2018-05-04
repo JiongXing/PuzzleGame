@@ -19,17 +19,17 @@
 9. 实现几种人工智能算法：广度优先搜索、双向广度优先搜索、A*搜索
 10. 保存游戏进度
 11. 读取游戏进度
-![Puzzle Game.png](http://upload-images.jianshu.io/upload_images/2419179-5bcc37b2038eee3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Puzzle Game.png](https://github.com/JiongXing/PuzzleGame/raw/master/resources/PuzzleGame.png)
 
 # 自动完成拼图复原
 先看看完成后的效果。点自动按钮后，游戏将会把当前的拼图一步一步移动直到复原图片。
-![自动复原.gif](http://upload-images.jianshu.io/upload_images/2419179-f0f9d37edb2aa055.gif?imageMogr2/auto-orient/strip)
+![自动复原.gif](https://github.com/JiongXing/PuzzleGame/raw/master/resources/自动复原.gif)
 
 # 图片与方块
 图片的选取可通过拍照、从相册选，或者使用内置默认图片。
 由于游戏是在正方形区域内进行的，所以若想有最好的游戏效果，我们需要一张裁剪成正方形的图片。
 
-![截取正方形区域.png](http://upload-images.jianshu.io/upload_images/2419179-b3d79922e8094e30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![截取正方形区域.png](https://github.com/JiongXing/PuzzleGame/raw/master/resources/截取正方形区域.png)
 
 选好图片后，需要把图片切割成`n x n`块。这里每一个方块`PuzzlePiece`都是一个`UIButton`。
 由于图片是会被打散打乱的，所以每个方块应该记住它自己在原图上的初始位置，这里给方块添加一个属性`ID`，用于保存。
@@ -50,36 +50,36 @@
 切割后的图片块组成了一个`n x n`矩阵，亦即`n`阶方阵。而想要改变游戏难度，我们只需要改变方阵的阶数即可。
 设计三档难度，从低到高分别对应`3 x 3`、`4 x 4`、`5 x 5`的方阵。
 
-![难度选择.gif](http://upload-images.jianshu.io/upload_images/2419179-b4d86e8a362b24ea.gif?imageMogr2/auto-orient/strip)
+![难度选择.gif](https://github.com/JiongXing/PuzzleGame/raw/master/resources/难度选择.gif)
 
 假如我们把游戏中某个时刻的方块排列顺序称为一个状态，那么当阶数为`n`时，游戏的总状态数就是`n²`的阶乘。
 在不同难度下进行游戏将会有非常大的差异，无论是手动游戏还是AI进行游戏。
 - 在低难度下，拼图共有`(3*3)! = 362880`个状态，并不多，即便是最慢的广搜算法也可以在短时间内搜出复原路径。
 
-![3阶方阵的搜索空间.png](http://upload-images.jianshu.io/upload_images/2419179-ea0aa7d2464707ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3阶方阵的搜索空间.png](https://github.com/JiongXing/PuzzleGame/raw/master/resources/3阶方阵的搜索空间.png)
 
 - 在中难度下，拼图变成了4阶方阵，拼图状态数飙升到`(4*4)! = 20922789888000`，二十万亿。广搜算法已基本不能搜出结果，直到爆内存。
 
-![广搜算法占用的巨量内存.gif](http://upload-images.jianshu.io/upload_images/2419179-68abf143af9d8a1c.gif?imageMogr2/auto-orient/strip)
+![广搜算法占用的巨量内存.gif](https://github.com/JiongXing/PuzzleGame/raw/master/resources/广搜算法占用的巨量内存.gif)
 
 - 在高难度下，拼图变成了5阶方阵，状态数是个天文数字`(5*5)! = 1.551121004333098e25`，10的25次方。此时无论是广搜亦或是双向广搜都已无能为力，而A*尚可一战。
 
-![高难度下的5阶方阵.png](http://upload-images.jianshu.io/upload_images/2419179-a350fe852ef57f80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![高难度下的5阶方阵.png](https://github.com/JiongXing/PuzzleGame/raw/master/resources/高难度下的5阶方阵.png)
 
 # 方块移动
 在选取完图片后，拼图是完整无缺的，此时让第一个被触击的方块成为空格。
 从第二次触击开始，将会对所触击的方块进行移动，但只允许空格附近的方块发生移动。
 每一次移动方块，实质上是让方块的位置与空格的位置进行交换。在这里思维需要转个小弯，空格并不空，它也是一个对象，只不过表示出来是一块空白而已。那么我们移动了方块，是否可以反过来想，其实是移动了空格？答案是肯定的，并且思维这样转过来后，更方便代码实现。
 
-![方块移动.gif](http://upload-images.jianshu.io/upload_images/2419179-ef34e8bc08d30431.gif?imageMogr2/auto-orient/strip)
+![方块移动.gif](https://github.com/JiongXing/PuzzleGame/raw/master/resources/方块移动.gif)
 
 # 打乱方块顺序
 这里为了让打乱顺序后的拼图有解，采用随机移动一定步数的方法来实现洗牌。
 对于n阶方阵，可设计随机的步数为：`n * n * 10`。在实际测试当中，这个随机移动的步数已足够让拼图完全乱序，即使让随机的步数再加大10倍，其复原所需的移动步数也变化不大。复原步数与方阵的阶数有关，无论打乱多少次，复原步数都是趋于一个稳定的范围。
 
-![打乱方块顺序.gif](http://upload-images.jianshu.io/upload_images/2419179-c5e6181092d3bdde.gif?imageMogr2/auto-orient/strip)
+![打乱方块顺序.gif](https://github.com/JiongXing/PuzzleGame/raw/master/resources/打乱方块顺序.gif)
 
-![随机移动一定步数.png](http://upload-images.jianshu.io/upload_images/2419179-3659373b75d5b8e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![随机移动一定步数.png](https://github.com/JiongXing/PuzzleGame/raw/master/resources/随机移动一定步数.png)
 
 # 拼图状态
 我们需要定义一个类来表示拼图在某个时刻的状态。
@@ -136,7 +136,7 @@
 我们把拼图在某个时刻的方块排列称为一个状态，那么一旦发生方块移动，就会生成一个新的状态。
 对于每个状态来说，它都能够通过改变空格的位置而衍生出另一个状态，而衍生出的状态又能够衍生出另一些状态。这种行为非常像一棵树的生成，当然这里的树指的是数据结构上的树结构。
 
-![拼图状态树.png](http://upload-images.jianshu.io/upload_images/2419179-5a74959b6c2e8876.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![拼图状态树.png](https://github.com/JiongXing/PuzzleGame/raw/master/resources/拼图状态树.png)
 
 推演移动路径的过程，就是根据当前状态不断衍生状态，然后判断新状态是否为我们的目标状态(拼图完全复原时的状态)。如果找到了目标，就可以原路返回，依次找出目标所经过的所有状态。
 由此，状态树中的每一个结点都需要提供以下属性和方法：
@@ -193,7 +193,7 @@ typedef BOOL(^JXPathSearcherEqualComparator)(id<JXPathSearcherStatus> status1, i
 # 广度优先搜索(Breadth First Search, BFS)
 广度优先搜索是一种盲目搜索算法，它认为所有状态(或者说结点)都是等价的，不存在优劣之分。
 
-![自然界的广度优先搜索.gif](http://upload-images.jianshu.io/upload_images/2419179-1be2c076e50337c6.gif?imageMogr2/auto-orient/strip)
+![自然界的广度优先搜索.gif](https://github.com/JiongXing/PuzzleGame/raw/master/resources/自然界的广度优先搜索.gif)
 
 假如我们把所有需要搜索的状态组成一棵树来看，广搜就是一层搜完再搜下一层，直到找出目标结点，或搜完整棵树为止。
 1. 我们可以使用一个先进先出(First Input First Output, FIFO)的队列来**存放待搜索的状态**，这个队列可以给它一个名称叫开放队列，也有人把它叫做开放列表(Open List)。
@@ -270,7 +270,7 @@ typedef BOOL(^JXPathSearcherEqualComparator)(id<JXPathSearcherStatus> status1, i
 }
 ```
 
-![3阶方阵，广搜平均需要搜索10万个状态](http://upload-images.jianshu.io/upload_images/2419179-bc36edb7b7b94fca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3阶方阵，广搜平均需要搜索10万个状态](https://github.com/JiongXing/PuzzleGame/raw/master/resources/3阶方阵，广搜平均需要搜索10万个状态.png)
 
 # 双向广度优先搜索(Bi-Directional Breadth First Search)
 双向广度优先搜索是对广度优先搜索的优化，但是有一个使用条件：搜索路径可逆。
@@ -348,7 +348,7 @@ typedef BOOL(^JXPathSearcherEqualComparator)(id<JXPathSearcherStatus> status1, i
     return path;
 }
 ```
-![3阶方阵，双向广搜平均需要搜索3500个状态](http://upload-images.jianshu.io/upload_images/2419179-c46db0c1357e0b10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3阶方阵，双向广搜平均需要搜索3500个状态](https://github.com/JiongXing/PuzzleGame/raw/master/resources/3阶方阵，双向广搜平均需要搜索3500个状态.png)
 
 # A*搜索(A Star)
 不同于盲目搜索，**A***算法是一种**启发式算法(Heuristic Algorithm)**。
@@ -465,10 +465,10 @@ f(n) = g(n) + h(n)
 ```
 可以看到，代码基本是以广搜为模块，加入了`f(n) = g(n) + h(b)`的操作，并且使用了优先队列作为开放表，这样改进后，算法的效率是不可同日而语。
 
-![3阶方阵，A*算法平均需要搜索300个状态](http://upload-images.jianshu.io/upload_images/2419179-bf942e3bee6ab312.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3阶方阵，A*算法平均需要搜索300个状态](https://github.com/JiongXing/PuzzleGame/raw/master/resources/3阶方阵，A*算法平均需要搜索300个状态.png)
 
 最后，贴上高难度下依然战斗力爆表的A\*算法效果图：
 
-![战斗力爆表](http://upload-images.jianshu.io/upload_images/2419179-d4798aab4d4260f6.gif?imageMogr2/auto-orient/strip)
+![战斗力爆表](https://github.com/JiongXing/PuzzleGame/raw/master/resources/战斗力爆表.gif)
 
 ![5阶方阵下的A*搜索算法](https://github.com/JiongXing/PuzzleGame/raw/master/resources/5阶方阵下的A*搜索算法.png)
