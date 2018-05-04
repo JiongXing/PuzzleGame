@@ -403,7 +403,7 @@ f(n) = g(n) + h(n)
 那么问题来了，**在给每个状态都计算并赋予上`f`值后，如何做到每一次只取`f`值最小的那个？**
 前文已讲到，所有扩展出来的新状态都会放入开放队列中的，如果A\*算法也像广搜那样只放在队列尾，然后每次只取队首元素来搜索的话，那么`f`值完全没有起到作用。
 事实上，因为每个状态都有`f`值的存在，它们已经有了优劣高下之分，队列在存取它们的时候，应当按其`f`值而有选择地进行入列出列，这时候需要用到**优先队列(Priority Queue)**，它能够每次出列优先级最高的元素。
-关于优先队列的讲解和实现，可参考另一篇文章[《借助完全二叉树，实现优先队列与堆排序》](http://www.jianshu.com/p/9a456d1b59b5)，这里不再展开论述。
+关于优先队列的讲解和实现，可参考另一篇文章[《借助完全二叉树，实现优先队列与堆排序》](https://github.com/JiongXing/JXPriorityQueue)，这里不再展开论述。
 以下是A\*搜索算法的代码实现：
 ```objectivec
 - (NSMutableArray *)search {
@@ -469,6 +469,6 @@ f(n) = g(n) + h(n)
 
 最后，贴上高难度下依然战斗力爆表的A\*算法效果图：
 
-![](http://upload-images.jianshu.io/upload_images/2419179-d4798aab4d4260f6.gif?imageMogr2/auto-orient/strip)
+![战斗力爆表](http://upload-images.jianshu.io/upload_images/2419179-d4798aab4d4260f6.gif?imageMogr2/auto-orient/strip)
 
-![5阶方阵下的A*搜索算法](http://upload-images.jianshu.io/upload_images/2419179-989048e369ba5694.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![5阶方阵下的A*搜索算法](https://github.com/JiongXing/PuzzleGame/raw/master/resources/5阶方阵下的A*搜索算法.png)
