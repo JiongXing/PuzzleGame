@@ -19,6 +19,7 @@
 9. 实现几种人工智能算法：广度优先搜索、双向广度优先搜索、A*搜索
 10. 保存游戏进度
 11. 读取游戏进度
+
 ![Puzzle Game.png](https://github.com/JiongXing/PuzzleGame/raw/master/resources/PuzzleGame.png)
 
 # 自动完成拼图复原
